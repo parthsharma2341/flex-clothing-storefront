@@ -1,0 +1,114 @@
+<section style="padding: 70px 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+  <div class="flex-container">
+    
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-subtle);">
+      <div>
+        <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent);">
+          [ {{ section.settings.subheading | default: "CATEGORICAL ARCHIVE" }} ]
+        </span>
+        <h2 style="font-size: 32px; margin-top: 4px; letter-spacing: 0.01em;">
+          {{ section.settings.heading | default: "EQUIPMENT &amp; APPAREL SILHOUETTES" }}
+        </h2>
+      </div>
+      <a href="{{ routes.collections_url }}" class="flex-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted);">
+        VIEW ALL [ &rarr; ]
+      </a>
+    </div>
+
+    <div class="flex-categories-grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.collection.url | default: '/collections/all' }}" class="flex-category-card">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover' }}
+          {%- elsif block.settings.collection.image != blank -%}
+            {{ block.settings.collection.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'w-full h-full object-cover' }}
+          {%- else -%}
+            {%- assign cat_title = block.settings.title | downcase -%}
+            {%- if cat_title contains 'compression' -%}
+              <img src="{{ 'compression-tee-black.jpg' | asset_url }}" alt="{{ block.settings.title }}" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            {%- elsif cat_title contains 'tank' or cat_title contains 'muscle' -%}
+              <img src="{{ 'muscle-tee-black.png' | asset_url }}" alt="{{ block.settings.title }}" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            {%- elsif cat_title contains 'jogger' or cat_title contains 'pant' or cat_title contains 'sweat' -%}
+              <img src="{{ 'stripe-joggers-grey.png' | asset_url }}" alt="{{ block.settings.title }}" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'waffle-henley.png' | asset_url }}" alt="{{ block.settings.title }}" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+            {%- endif -%}
+          {%- endif -%}
+
+          <div class="flex-category-content">
+            <span class="flex-mono" style="font-size: 10px; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.12em;">
+              [ 0{{ forloop.index }} // {{ block.settings.tagline }} ]
+            </span>
+            <h3 class="flex-category-title" style="font-size: 20px; margin: 4px 0 8px 0;">
+              {{ block.settings.title | default: block.settings.collection.title }}
+            </h3>
+            <span class="flex-mono" style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #FFF;">
+              EXPLORE DROP [ &rarr; ]
+            </span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FLEX Category Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "EQUIPMENT & APPAREL SILHOUETTES"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "CATEGORICAL ARCHIVE"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title"
+        },
+        {
+          "type": "text",
+          "id": "tagline",
+          "label": "Tagline",
+          "default": "SUPPORT | PERFORMANCE | RECOVERY"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Category Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FLEX Category Grid",
+      "blocks": [
+        { "type": "category", "settings": { "title": "COMPRESSION", "tagline": "ZONED WARP KNIT" } },
+        { "type": "category", "settings": { "title": "HEAVYWEIGHT TEES", "tagline": "240 GSM COMBED COTTON" } },
+        { "type": "category", "settings": { "title": "TANKS & MUSCLE", "tagline": "DELTOID FREEDOM CUT" } },
+        { "type": "category", "settings": { "title": "SWEATS & FLEECE", "tagline": "360 GSM FRENCH TERRY" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

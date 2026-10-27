@@ -1,0 +1,21 @@
+# FLEX E-Commerce Robots Configuration
+User-agent: *
+Allow: /
+Allow: /shop
+Allow: /products/
+Allow: /collections/
+Allow: /about
+Allow: /lookbook
+Allow: /size-guide
+Allow: /faq
+Allow: /shipping-returns
+Allow: /privacy-policy
+Allow: /terms
+
+Disallow: /admin
+Disallow: /checkout
+Disallow: /account
+Disallow: /cart
+Disallow: /track-order
+
+Sitemap: https://flex-fit.shop/sitemap.xml

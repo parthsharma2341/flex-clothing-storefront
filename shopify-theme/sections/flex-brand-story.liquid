@@ -1,0 +1,79 @@
+<section style="padding: 90px 0; border-bottom: 1px solid var(--color-border); background: var(--color-surface);">
+  <div class="flex-container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; align-items: center;">
+      
+      <div>
+        <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); display: block; margin-bottom: 10px;">
+          [ PROTOCOL // RESEARCH MANIFESTO ]
+        </span>
+        <h2 style="font-size: 38px; line-height: 1.1; margin: 0 0 16px; letter-spacing: 0.01em;">
+          {{ section.settings.heading | default: "PRECISION-CRAFTED AT THE INTERSECTION OF MOTION &amp; DESIGN." }}
+        </h2>
+        <p class="flex-mono" style="font-size: 13px; color: var(--color-muted); line-height: 1.8; margin-bottom: 28px;">
+          {{ section.settings.text | default: "FLEX IT operates as an athletic equipment laboratory. We do not mass-produce generic merchandise. Every garment undergoes mechanical wear testing under heavy barbell friction, high-velocity sweat dissipation, and repeated industrial washing before joining a public drop." }}
+        </p>
+
+        <a href="{{ section.settings.btn_link | default: '/pages/about' }}" class="flex-btn-secondary flex-mono" style="padding: 12px 20px; font-size: 11px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: #FFF; background: var(--color-card);">
+          [ {{ section.settings.btn_text | default: "READ FULL RESEARCH SPECIFICATION" }} &rarr; ]
+        </a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--color-border); padding: 24px; border-radius: var(--radius-sm);">
+          <span class="flex-mono" style="font-size: 10px; color: var(--color-muted); text-transform: uppercase; display: block; margin-bottom: 6px;">[ TESTED METRIC 01 ]</span>
+          <span class="flex-mono" style="font-size: 28px; font-weight: 700; color: #FFF; display: block; margin-bottom: 6px;">240+ GSM</span>
+          <p class="flex-mono" style="font-size: 11px; color: var(--color-muted); line-height: 1.5;">Heavyweight ring-spun cotton tested for zero collar-warp and structured drape.</p>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--color-border); padding: 24px; border-radius: var(--radius-sm);">
+          <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); text-transform: uppercase; display: block; margin-bottom: 6px;">[ TESTED METRIC 02 ]</span>
+          <span class="flex-mono" style="font-size: 28px; font-weight: 700; color: var(--color-accent); display: block; margin-bottom: 6px;">4-WAY</span>
+          <p class="flex-mono" style="font-size: 11px; color: var(--color-muted); line-height: 1.5;">Zoned multi-density compression applying graduated tension across torso and back.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FLEX Brand Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "PROTOCOL // RESEARCH MANIFESTO"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "PRECISION-CRAFTED AT THE INTERSECTION OF MOTION & DESIGN."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "FLEX IT operates as an athletic equipment laboratory. We do not mass-produce generic merchandise."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "READ FULL RESEARCH SPECIFICATION"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FLEX Brand Story"
+    }
+  ]
+}
+{% endschema %}

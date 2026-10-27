@@ -1,0 +1,27 @@
+<section class="flex-page-section" style="padding: 60px 0 90px 0; border-bottom: 1px solid var(--color-border);">
+  <div class="flex-container" style="max-width: 800px;">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent);">FLEX IT</span>
+      <h1 style="font-size: 36px; margin-top: 8px; text-transform: uppercase;">{{ page.title | default: "ABOUT FLEX IT" }}</h1>
+    </div>
+
+    <div style="font-size: 15px; line-height: 1.8; color: #BBB;">
+      {%- if page.content != blank -%}
+        {{ page.content }}
+      {%- else -%}
+        <p>FLEX IT was founded on a singular conviction: activewear shouldn't force an athlete to choose between raw gym durability and elevated high-street design.</p>
+        <p style="margin-top: 20px;">Every garment we construct undergoes months of testing under heavy barbells, intense HIIT intervals, and repeated high-heat washes. From our 240 GSM combed cotton raw-edge muscle tees to our zoned-compression seamless fabrics, we engineer garments that amplify your natural physique and refuse to lose shape.</p>
+        <div style="margin-top: 40px; text-align: center;">
+          <a href="{{ routes.all_products_collection_url }}" class="flex-btn-primary">DISCOVER THE COLLECTION &rarr;</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Main",
+  "settings": []
+}
+{% endschema %}

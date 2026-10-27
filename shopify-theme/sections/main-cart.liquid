@@ -1,0 +1,100 @@
+<section class="flex-cart-section" style="padding: 60px 0 90px 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+  <div class="flex-container" style="max-width: 900px;">
+
+    <div style="margin-bottom: 30px; text-align: center;">
+      <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); display: block; margin-bottom: 6px;">
+        [ BAG INDEX // ACTIVE ORDERS ]
+      </span>
+      <h1 style="font-size: 36px; margin: 0; text-transform: uppercase; letter-spacing: 0.01em;">
+        EQUIPMENT BAG ({{ cart.item_count }})
+      </h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post">
+        
+        <!-- Studio Freight Free Shipping Meter -->
+        <div style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 16px 20px; margin-bottom: 30px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 10px;" class="flex-mono">
+            <span>DISPATCH STATUS: FREE EXPRESS PAN-INDIA LOGISTICS</span>
+            <span style="color: #10B981; font-weight: 700;">ACTIVE &bull; UNLOCKED &check;</span>
+          </div>
+          <div style="width: 100%; height: 4px; background: rgba(255, 255, 255, 0.08); border-radius: 2px; overflow: hidden;">
+            <div style="width: 100%; height: 100%; background: #10B981;"></div>
+          </div>
+        </div>
+
+        <!-- Items Table with Studio Freight Hairline Lines -->
+        <div style="border-top: 1px solid var(--color-border);">
+          {%- for item in cart.items -%}
+            <div style="display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--color-border-subtle); align-items: center;">
+              <div style="width: 84px; height: 105px; border-radius: var(--radius-sm); overflow: hidden; background: #151515; border: 1px solid var(--color-border); flex-shrink: 0;">
+                {%- if item.image != blank -%}
+                  {{ item.image | image_url: width: 200 | image_tag: class: 'w-full h-full object-cover' }}
+                {%- else -%}
+                  <img src="{{ 'muscle-tee-black.png' | asset_url }}" alt="{{ item.title }}" width="160" height="200" style="width: 100%; height: 100%; object-fit: cover;">
+                {%- endif -%}
+              </div>
+
+              <div style="flex: 1;">
+                <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); text-transform: uppercase;">
+                  [ ITEM 0{{ forloop.index }} ]
+                </span>
+                <h3 style="font-size: 15px; font-weight: 700; margin: 2px 0 4px 0;">{{ item.product.title }}</h3>
+                <p class="flex-mono" style="font-size: 11px; color: var(--color-muted); margin: 0 0 8px 0;">
+                  VARIANT: {{ item.variant.title }}
+                </p>
+                <span class="flex-mono" style="font-size: 14px; font-weight: 700; color: #FFF;">{{ item.price | money }}</span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <span class="flex-mono" style="font-size: 12px; color: #FFF; border: 1px solid var(--color-border); padding: 4px 10px; border-radius: var(--radius-sm); background: var(--color-card);">
+                  QTY: {{ item.quantity }}
+                </span>
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="flex-mono" style="color: #EF4444; font-size: 11px; text-decoration: underline;">
+                  [ REMOVE ]
+                </a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <!-- Cart Summary Footer -->
+        <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: flex-end; gap: 14px;">
+          <div style="font-size: 20px; font-weight: 700;" class="flex-mono">
+            SUBTOTAL: <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="flex-mono" style="font-size: 11px; color: var(--color-muted); margin: 0;">
+            ALL TAXES INCLUDED &bull; CALCULATED AT DISPATCH GATEWAY
+          </p>
+          <div style="display: flex; gap: 14px; margin-top: 10px;">
+            <a href="{{ routes.all_products_collection_url }}" class="flex-btn-secondary flex-mono" style="padding: 14px 20px; font-size: 11px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+              [ CONTINUE ARCHIVE ]
+            </a>
+            <button type="submit" name="checkout" class="flex-btn-primary flex-mono" style="padding: 14px 28px; font-size: 12px; background: #FFFFFF; color: #000000; border-radius: var(--radius-sm); font-weight: 700;">
+              PROCEED TO SECURE CHECKOUT [ &rarr; ]
+            </button>
+          </div>
+        </div>
+
+      </form>
+    {%- else -%}
+      <div style="text-align: center; padding: 70px 20px; background: var(--color-card); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+        <p class="flex-mono" style="font-size: 14px; color: var(--color-muted); margin-bottom: 24px;">
+          [ BAG IS CURRENTLY EMPTY // NO ACTIVE REQUISITIONS ]
+        </p>
+        <a href="{{ routes.all_products_collection_url }}" class="flex-btn-primary flex-mono" style="padding: 12px 24px; border-radius: var(--radius-sm); font-size: 11px; background: #FFF; color: #000;">
+          EXPLORE CURRENT DROPS [ &rarr; ]
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart Main",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+<section style="padding: 120px 0; text-align: center;">
+  <div class="flex-container">
+    <span style="font-family: var(--font-heading); font-size: 72px; font-weight: 900; color: var(--color-accent); display: block; line-height: 1;">
+      {{ section.settings.heading | default: "404" }}
+    </span>
+    <h1 style="font-size: 28px; margin: 16px 0 10px;">
+      {{ section.settings.subheading | default: "Looks like this space needs a little rearranging." }}
+    </h1>
+    <p style="font-size: 14px; color: var(--color-muted); max-width: 440px; margin: 0 auto 30px;">
+      {{ section.settings.text | default: "The page or garment you are looking for has been relocated." }}
+    </p>
+    <a href="{{ section.settings.btn_link | default: '/collections/all' }}" class="flex-btn-primary">
+      {{ section.settings.btn_text | default: "BACK TO SHOP" }} &rarr;
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FLEX 404",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "404"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Looks like this space needs a little rearranging."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "The page or garment you are looking for has been relocated."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "BACK TO SHOP"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}

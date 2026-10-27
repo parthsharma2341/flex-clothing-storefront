@@ -1,0 +1,742 @@
+<section class="flex-product-detail-section" style="padding: 40px 0 90px 0; border-bottom: 1px solid var(--color-border); background: var(--color-bg);">
+  <div class="flex-container">
+
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign handle_str = product.handle | downcase -%}
+    {%- assign title_str = product.title | downcase -%}
+    {%- assign type_str = product.type | downcase -%}
+
+    <!-- Technical Header Bar / Breadcrumbs (ElevenLabs / Studio Freight style) -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-subtle);">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="{{ routes.all_products_collection_url }}" class="flex-mono" style="font-size: 11px; color: var(--color-muted); text-transform: uppercase; text-decoration: none;">
+          &larr; [ BACK TO ARCHIVE ]
+        </a>
+        <span class="flex-tech-badge">
+          SYS_REF: {{ product.id | default: "FLX-2026-01" }}
+        </span>
+        <span class="flex-tech-badge" style="border-color: rgba(203, 184, 154, 0.4); color: var(--color-accent);">
+          EDITION 11_11
+        </span>
+      </div>
+
+      <div class="flex-pulse-indicator">
+        <span class="flex-pulse-dot"></span>
+        <span>IN STOCK &bull; DISPATCHES IN 24H</span>
+      </div>
+    </div>
+
+    <!-- Main Product Layout Grid -->
+    <div class="flex-product-layout" style="display: grid; grid-template-columns: 1fr; gap: 50px; align-items: start;">
+      
+      <!-- LEFT COLUMN: Multi-Angle Technical Media Stage -->
+      <div class="flex-product-media-col" style="position: sticky; top: 90px;">
+        
+        <!-- Determine Default Main Image and Fallbacks -->
+        {%- assign main_img_url = '' -%}
+        {%- if current_variant.featured_image != blank -%}
+          {%- assign main_img_url = current_variant.featured_image | image_url: width: 1200 -%}
+        {%- elsif product.featured_image != blank -%}
+          {%- assign main_img_url = product.featured_image | image_url: width: 1200 -%}
+        {%- else -%}
+          {%- if handle_str contains 'compression' or title_str contains 'compression' or type_str contains 'compression' -%}
+            {%- assign main_img_url = 'compression-tee-black.jpg' | asset_url -%}
+            {%- assign angle_2 = 'compression-tee-blue.png' | asset_url -%}
+            {%- assign angle_3 = 'compression-blue-poster.png' | asset_url -%}
+          {%- elsif handle_str contains 'jogger' or title_str contains 'jogger' or handle_str contains 'stripe' -%}
+            {%- assign main_img_url = 'stripe-joggers-grey.png' | asset_url -%}
+            {%- assign angle_2 = 'Minimalist FLEX Stripe Sweatpants Catalog Shot (1).png' | asset_url -%}
+            {%- assign angle_3 = 'Minimalist FLEX Stripe Sweatpants Catalog Shot.png' | asset_url -%}
+          {%- elsif handle_str contains 'waffle' or handle_str contains 'henley' or title_str contains 'henley' -%}
+            {%- assign main_img_url = 'waffle-henley.png' | asset_url -%}
+            {%- assign angle_2 = 'FLEX Waffle Henley Lookbook.png' | asset_url -%}
+            {%- assign angle_3 = 'FLEX Performance Apparel Feature Poster.png' | asset_url -%}
+          {%- elsif handle_str contains 'wide-leg' or handle_str contains 'sweatpants' or title_str contains 'wide-leg' -%}
+            {%- assign main_img_url = 'wide-leg-sweatpants.png' | asset_url -%}
+            {%- assign angle_2 = 'athletic-sweatpants.png' | asset_url -%}
+            {%- assign angle_3 = 'FLEX Logo Wide-Leg Sweatpants.png' | asset_url -%}
+          {%- elsif handle_str contains 'hoodie' or title_str contains 'hoodie' -%}
+            {%- assign main_img_url = 'athletic-sweatpants.png' | asset_url -%}
+            {%- assign angle_2 = 'FLEX Performance Apparel Feature Poster.png' | asset_url -%}
+            {%- assign angle_3 = 'wide-leg-sweatpants.png' | asset_url -%}
+          {%- elsif handle_str contains 'stringer' or handle_str contains 'tank' or title_str contains 'tank' -%}
+            {%- assign main_img_url = 'muscle-tee-features.png' | asset_url -%}
+            {%- assign angle_2 = 'muscle-tee-black.png' | asset_url -%}
+            {%- assign angle_3 = 'FLEX Washed Black Muscle Tee Collage.png' | asset_url -%}
+          {%- else -%}
+            {%- assign main_img_url = 'muscle-tee-black.png' | asset_url -%}
+            {%- assign angle_2 = 'muscle-tee-features.png' | asset_url -%}
+            {%- assign angle_3 = 'FLEX Washed Black Muscle Tee Collage.png' | asset_url -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        <!-- Main Image Container -->
+        <div id="flex-main-media" style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); aspect-ratio: 1/1; background: var(--color-card); position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+          <img id="flex-featured-img" src="{{ main_img_url }}" alt="{{ product.title | escape }}" width="1200" height="1200" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);" loading="eager">
+
+          <!-- Corner Metadata Tag -->
+          <div style="position: absolute; top: 16px; left: 16px; display: flex; gap: 8px;">
+            <span class="flex-tech-badge" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(8px);">
+              FIG. 01_PRIMARY
+            </span>
+            {%- if product.compare_at_price > product.price -%}
+              <span class="flex-tech-badge" style="background: rgba(239, 68, 68, 0.9); color: #FFF; border: none;">
+                SALE
+              </span>
+            {%- endif -%}
+          </div>
+
+          <div style="position: absolute; bottom: 16px; right: 16px;">
+            <span class="flex-tech-badge" style="background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(8px); font-size: 10px;">
+              SCALE: 1:1 TRUE FORM
+            </span>
+          </div>
+        </div>
+
+        <!-- Studio Freight Dynamic Multi-Angle Switcher -->
+        <div class="flex-view-switcher" id="flex-view-switcher">
+          {%- if product.images.size > 1 -%}
+            {%- for media_img in product.images -%}
+              <button type="button" class="flex-view-btn {% if forloop.first %}active{% endif %}" onclick="switchMediaView(this, '{{ media_img | image_url: width: 1200 }}')">
+                <span>[ 0{{ forloop.index }} ]</span>
+                {%- if forloop.index == 1 -%}FRONT ELEVATION
+                {%- elsif forloop.index == 2 -%}MACRO TEXTURE
+                {%- elsif forloop.index == 3 -%}STUDIO DRAPE
+                {%- else -%}ANGLE 0{{ forloop.index }}
+                {%- endif -%}
+              </button>
+            {%- endfor -%}
+          {%- else -%}
+            <button type="button" class="flex-view-btn active" onclick="switchMediaView(this, '{{ main_img_url }}')">
+              <span>[ 01 ]</span> FRONT ELEVATION
+            </button>
+            {%- if angle_2 != blank -%}
+              <button type="button" class="flex-view-btn" onclick="switchMediaView(this, '{{ angle_2 }}')">
+                <span>[ 02 ]</span> MACRO TEXTURE
+              </button>
+            {%- endif -%}
+            {%- if angle_3 != blank -%}
+              <button type="button" class="flex-view-btn" onclick="switchMediaView(this, '{{ angle_3 }}')">
+                <span>[ 03 ]</span> STUDIO DRAPE
+              </button>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Technical Specification & Purchase Module -->
+      <div class="flex-product-info-col">
+        
+        <!-- Category & Series Tag -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+          <span class="flex-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); font-weight: 700;">
+            [ {{ product.type | default: "EQUIPMENT // ATHLETIC TEXTILES" }} ]
+          </span>
+          <span class="flex-mono" style="font-size: 11px; color: var(--color-muted); letter-spacing: 0.1em;">
+            BATCH #004 / 2026
+          </span>
+        </div>
+
+        <!-- Product Title -->
+        <h1 style="font-size: 34px; font-family: var(--font-heading); margin: 0 0 16px 0; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.15;">
+          {{ product.title | default: "FLEX 01 // OVERSIZED MUSCLE TEE" }}
+        </h1>
+
+        <!-- Price & Batch Discount Badge -->
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--color-border-subtle);">
+          <span id="flex-product-price-display" class="flex-mono" style="font-size: 28px; font-weight: 700; color: #FFFFFF;">
+            {{ current_variant.price | default: product.price | money | default: "₹1,199" }}
+          </span>
+          {%- if product.compare_at_price > product.price -%}
+            <span id="flex-compare-price-display" class="flex-mono" style="font-size: 16px; text-decoration: line-through; color: var(--color-muted);">
+              {{ current_variant.compare_at_price | default: product.compare_at_price | money | default: "₹1,799" }}
+            </span>
+            <span class="flex-tech-badge" style="border-color: rgba(239, 68, 68, 0.4); color: #EF4444; background: rgba(239, 68, 68, 0.06);">
+              SALE DROP
+            </span>
+          {%- endif -%}
+        </div>
+
+        <!-- Real-Time Stock Status Notification -->
+        <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-sm); padding: 10px 14px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="flex-pulse-dot"></span>
+            <span class="flex-mono" style="font-size: 11px; color: #10B981; font-weight: 600;">
+              AVAILABLE FOR IMMEDIATE DISPATCH
+            </span>
+          </div>
+          <span class="flex-mono" style="font-size: 11px; color: var(--color-muted);">
+            NEXT RUN: 14:00 IST
+          </span>
+        </div>
+
+        <!-- ElevenLabs Signature: Interactive Fabric Soundwave / Kinetic Tension Visualizer -->
+        <div class="flex-audio-preview" onclick="toggleFabricWave(this)" title="Click to listen to fabric motion resonance">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button type="button" style="width: 32px; height: 32px; border-radius: 50%; background: #FFF; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #000; font-size: 12px;">
+              &#9658;
+            </button>
+            <div>
+              <p class="flex-mono" style="font-size: 11px; font-weight: 700; margin: 0; color: #FFF; text-transform: uppercase;">
+                FABRIC RESONANCE &amp; TENSION PREVIEW
+              </p>
+              <p class="flex-mono" style="font-size: 10px; color: var(--color-muted); margin: 2px 0 0 0;">
+                ACOUSTIC MOTION FIELD RECORDING &bull; 0:14
+              </p>
+            </div>
+          </div>
+
+          <div class="flex-wave-bars">
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+            <span class="flex-wave-bar"></span>
+          </div>
+        </div>
+
+        <!-- Order / Variant Form -->
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" id="flex-add-to-cart-form">
+          <input type="hidden" name="id" id="flex-variant-id-input" value="{{ current_variant.id | default: '1' }}">
+
+          <!-- DETECT COLOR OPTIONS -->
+          {%- assign color_option = nil -%}
+          {%- assign size_option = nil -%}
+          {%- for opt in product.options_with_values -%}
+            {%- assign opt_lower = opt.name | downcase -%}
+            {%- if opt_lower contains 'color' or opt_lower contains 'colour' or opt_lower contains 'colorway' or opt_lower contains 'finish' -%}
+              {%- assign color_option = opt -%}
+            {%- elsif opt_lower contains 'size' -%}
+              {%- assign size_option = opt -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          <!-- DYNAMIC COLORWAY SELECTION WITH IMAGE SWAPPING -->
+          <div style="margin-bottom: 22px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="flex-mono" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); letter-spacing: 0.08em;">
+                COLORWAY // FINISH:
+              </span>
+              <span id="active-color-name" class="flex-mono" style="font-size: 11px; color: #FFF; font-weight: 700; text-transform: uppercase;">
+                {%- if color_option != nil -%}
+                  {{ color_option.selected_value | default: color_option.values.first }}
+                {%- elsif handle_str contains 'compression' -%}
+                  ONYX BLACK
+                {%- elsif handle_str contains 'jogger' -%}
+                  HEATHER GREY
+                {%- elsif handle_str contains 'waffle' -%}
+                  CHALK OFF-WHITE
+                {%- elsif handle_str contains 'wide-leg' -%}
+                  VINTAGE CHARCOAL
+                {%- else -%}
+                  WASHED BLACK
+                {%- endif -%}
+              </span>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;" id="flex-colorways-list">
+              {%- if color_option != nil -%}
+                {%- for val in color_option.values -%}
+                  {%- assign val_lower = val | downcase -%}
+                  {%- assign swatch_hex = '#1B1B1B' -%}
+                  {%- if val_lower contains 'black' or val_lower contains 'onyx' or val_lower contains 'pitch' -%}
+                    {%- assign swatch_hex = '#121212' -%}
+                  {%- elsif val_lower contains 'blue' or val_lower contains 'ocean' or val_lower contains 'navy' -%}
+                    {%- assign swatch_hex = '#1E3A8A' -%}
+                  {%- elsif val_lower contains 'grey' or val_lower contains 'gray' or val_lower contains 'slate' or val_lower contains 'heather' -%}
+                    {%- assign swatch_hex = '#4B5563' -%}
+                  {%- elsif val_lower contains 'white' or val_lower contains 'chalk' or val_lower contains 'bone' -%}
+                    {%- assign swatch_hex = '#D8D2C2' -%}
+                  {%- elsif val_lower contains 'charcoal' -%}
+                    {%- assign swatch_hex = '#262626' -%}
+                  {%- endif -%}
+
+                  <!-- Find Variant Image for this Color -->
+                  {%- assign variant_img = '' -%}
+                  {%- assign variant_target_id = '' -%}
+                  {%- assign variant_target_price = '' -%}
+                  {%- for v in product.variants -%}
+                    {%- if v.options contains val -%}
+                      {%- if v.featured_image != blank and variant_img == '' -%}
+                        {%- assign variant_img = v.featured_image | image_url: width: 1200 -%}
+                        {%- assign variant_target_id = v.id -%}
+                        {%- assign variant_target_price = v.price | money -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <!-- Fallback Smart Image Match if merchant has not uploaded variant images -->
+                  {%- if variant_img == '' -%}
+                    {%- if val_lower contains 'blue' -%}
+                      {%- assign variant_img = 'compression-tee-blue.png' | asset_url -%}
+                    {%- elsif val_lower contains 'black' or val_lower contains 'onyx' -%}
+                      {%- if handle_str contains 'compression' -%}
+                        {%- assign variant_img = 'compression-tee-black.jpg' | asset_url -%}
+                      {%- else -%}
+                        {%- assign variant_img = 'muscle-tee-black.png' | asset_url -%}
+                      {%- endif -%}
+                    {%- elsif val_lower contains 'slate' -%}
+                      {%- assign variant_img = 'muscle-tee-features.png' | asset_url -%}
+                    {%- elsif val_lower contains 'grey' or val_lower contains 'heather' -%}
+                      {%- assign variant_img = 'stripe-joggers-grey.png' | asset_url -%}
+                    {%- elsif val_lower contains 'white' or val_lower contains 'chalk' -%}
+                      {%- assign variant_img = 'waffle-henley.png' | asset_url -%}
+                    {%- elsif val_lower contains 'charcoal' -%}
+                      {%- assign variant_img = 'wide-leg-sweatpants.png' | asset_url -%}
+                    {%- else -%}
+                      {%- assign variant_img = main_img_url -%}
+                    {%- endif -%}
+                  {%- endif -%}
+
+                  <div 
+                    class="flex-color-swatch {% if forloop.first %}active{% endif %}"
+                    onclick="selectTechnicalColor(this, '{{ val | escape }}', '{{ variant_img }}', '{{ variant_target_id }}', '{{ variant_target_price }}')"
+                    style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: {{ swatch_hex }}; border: {% if forloop.first %}2px solid #FFF{% else %}1px solid var(--color-border){% endif %}; cursor: pointer; position: relative; transition: all 0.2s ease; {% if forloop.first %}box-shadow: 0 0 0 2px rgba(255,255,255,0.4);{% endif %}"
+                    title="{{ val | escape }}"
+                  >
+                  </div>
+                {%- endfor -%}
+              {%- else -%}
+                <!-- Curated fallback colorways if product has no color option defined -->
+                {%- if handle_str contains 'compression' or title_str contains 'compression' -%}
+                  <div class="flex-color-swatch active" onclick="selectTechnicalColor(this, 'ONYX BLACK', '{{ 'compression-tee-black.jpg' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #0B0B0B; border: 2px solid #FFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(255,255,255,0.4);" title="Onyx Black"></div>
+                  <div class="flex-color-swatch" onclick="selectTechnicalColor(this, 'OCEAN BLUE', '{{ 'compression-tee-blue.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #1B3B6F; border: 1px solid var(--color-border); cursor: pointer;" title="Ocean Blue (Drop 02)"></div>
+                {%- elsif handle_str contains 'jogger' or title_str contains 'jogger' -%}
+                  <div class="flex-color-swatch active" onclick="selectTechnicalColor(this, 'HEATHER GREY', '{{ 'stripe-joggers-grey.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #4B5563; border: 2px solid #FFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(255,255,255,0.4);" title="Heather Grey"></div>
+                  <div class="flex-color-swatch" onclick="selectTechnicalColor(this, 'PITCH BLACK', '{{ 'wide-leg-sweatpants.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #111111; border: 1px solid var(--color-border); cursor: pointer;" title="Pitch Black"></div>
+                {%- elsif handle_str contains 'waffle' or title_str contains 'henley' -%}
+                  <div class="flex-color-swatch active" onclick="selectTechnicalColor(this, 'CHALK OFF-WHITE', '{{ 'waffle-henley.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #D8D2C2; border: 2px solid #FFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(255,255,255,0.4);" title="Chalk Off-White"></div>
+                  <div class="flex-color-swatch" onclick="selectTechnicalColor(this, 'SLATE DUST', '{{ 'FLEX Waffle Henley Lookbook.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #2A2A2A; border: 1px solid var(--color-border); cursor: pointer;" title="Slate Dust"></div>
+                {%- elsif handle_str contains 'wide-leg' or title_str contains 'sweatpants' -%}
+                  <div class="flex-color-swatch active" onclick="selectTechnicalColor(this, 'VINTAGE CHARCOAL', '{{ 'wide-leg-sweatpants.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #262626; border: 2px solid #FFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(255,255,255,0.4);" title="Vintage Charcoal"></div>
+                  <div class="flex-color-swatch" onclick="selectTechnicalColor(this, 'RAW BONE', '{{ 'athletic-sweatpants.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #E2DEC9; border: 1px solid var(--color-border); cursor: pointer;" title="Raw Bone"></div>
+                {%- else -%}
+                  <div class="flex-color-swatch active" onclick="selectTechnicalColor(this, 'WASHED BLACK', '{{ 'muscle-tee-black.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #1C1C1E; border: 2px solid #FFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(255,255,255,0.4);" title="Washed Black"></div>
+                  <div class="flex-color-swatch" onclick="selectTechnicalColor(this, 'VINTAGE SLATE', '{{ 'muscle-tee-features.png' | asset_url }}', '{{ current_variant.id }}', '')" style="width: 38px; height: 38px; border-radius: var(--radius-sm); background: #2C2D30; border: 1px solid var(--color-border); cursor: pointer;" title="Vintage Slate"></div>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          </div>
+
+          <!-- Studio Freight Size Selector Grid -->
+          <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="flex-mono" style="font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); letter-spacing: 0.08em;">
+                SPECIFICATION // SELECT SIZE
+              </span>
+              <a href="#size-guide" onclick="alert('CHEST SPECIFICATIONS:\nS: 38-40 inch chest\nM: 40-42 inch chest\nL: 42-44 inch chest\nXL: 44-46 inch chest\nXXL: 46-48 inch chest\n\nModel is 6\'1, 88kg wearing Size L (Athletic Loose Fit).'); return false;" class="flex-mono" style="font-size: 11px; color: var(--color-accent); text-decoration: underline;">
+                [ SIZE ADVISOR &rarr; ]
+              </a>
+            </div>
+
+            <div class="flex-size-grid">
+              {%- if size_option != nil -%}
+                {%- for s_val in size_option.values -%}
+                  {%- assign s_upper = s_val | upcase -%}
+                  {%- assign chest_spec = '40" CHEST' -%}
+                  {%- if s_upper == 'S' -%}{%- assign chest_spec = '38" CHEST' -%}
+                  {%- elsif s_upper == 'M' -%}{%- assign chest_spec = '40" CHEST' -%}
+                  {%- elsif s_upper == 'L' -%}{%- assign chest_spec = '42" CHEST' -%}
+                  {%- elsif s_upper == 'XL' -%}{%- assign chest_spec = '44" CHEST' -%}
+                  {%- elsif s_upper == 'XXL' or s_upper == '2XL' -%}{%- assign chest_spec = '46" CHEST' -%}
+                  {%- endif -%}
+
+                  <!-- Find Variant ID for size -->
+                  {%- assign size_variant_id = '' -%}
+                  {%- for v in product.variants -%}
+                    {%- if v.options contains s_val -%}
+                      {%- assign size_variant_id = v.id -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+
+                  <div class="flex-size-pill {% if forloop.index == 2 or forloop.first and size_option.values.size < 2 %}active{% endif %}" onclick="selectTechnicalSize(this, '{{ s_val }}', '{{ size_variant_id }}')">
+                    <span class="size-title">{{ s_val }}</span>
+                    <span class="size-sub">{{ chest_spec }}</span>
+                  </div>
+                {%- endfor -%}
+              {%- else -%}
+                <div class="flex-size-pill" onclick="selectTechnicalSize(this, 'S', '{{ current_variant.id }}')">
+                  <span class="size-title">S</span>
+                  <span class="size-sub">38" CHEST</span>
+                </div>
+                <div class="flex-size-pill active" onclick="selectTechnicalSize(this, 'M', '{{ current_variant.id }}')">
+                  <span class="size-title">M</span>
+                  <span class="size-sub">40" CHEST</span>
+                </div>
+                <div class="flex-size-pill" onclick="selectTechnicalSize(this, 'L', '{{ current_variant.id }}')">
+                  <span class="size-title">L</span>
+                  <span class="size-sub">42" CHEST</span>
+                </div>
+                <div class="flex-size-pill" onclick="selectTechnicalSize(this, 'XL', '{{ current_variant.id }}')">
+                  <span class="size-title">XL</span>
+                  <span class="size-sub">44" CHEST</span>
+                </div>
+                <div class="flex-size-pill" onclick="selectTechnicalSize(this, 'XXL', '{{ current_variant.id }}')">
+                  <span class="size-title">XXL</span>
+                  <span class="size-sub">46" CHEST</span>
+                </div>
+              {%- endif -%}
+            </div>
+            <input type="hidden" name="size" id="selected-size-input" value="M">
+          </div>
+
+          <!-- Quantity Stepper & Add to Bag CTA -->
+          <div style="display: flex; gap: 12px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-card); padding: 0 8px;">
+              <button type="button" onclick="let q = document.getElementById('flex-qty'); if(q.value > 1) q.value--;" style="background: none; border: none; color: #FFF; font-size: 16px; cursor: pointer; padding: 12px 10px;">-</button>
+              <input type="number" id="flex-qty" name="quantity" value="1" min="1" class="flex-mono" style="width: 44px; text-align: center; background: none; border: none; color: #FFF; font-weight: 700; font-size: 14px;">
+              <button type="button" onclick="let q = document.getElementById('flex-qty'); q.value++;" style="background: none; border: none; color: #FFF; font-size: 16px; cursor: pointer; padding: 12px 10px;">+</button>
+            </div>
+
+            <button type="submit" class="flex-btn-primary" style="flex: 1; padding: 16px 24px; font-size: 13px; letter-spacing: 0.12em; border-radius: var(--radius-sm); justify-content: space-between; background: #FFFFFF; color: #000000;">
+              <span>ADD TO BAG</span>
+              <span id="flex-cta-price-display" class="flex-mono">{{ current_variant.price | default: product.price | money | default: "₹1,199" }} &rarr;</span>
+            </button>
+          </div>
+
+          <!-- Express Payment Security Row -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px solid var(--color-border-subtle); margin-bottom: 28px;">
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-muted); text-transform: uppercase;">
+              FREE PAN-INDIA DELIVERY OVER ₹999
+            </span>
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); text-transform: uppercase;">
+              SECURE 256-BIT ENCRYPTION
+            </span>
+          </div>
+
+        </form>
+
+        <!-- DYNAMIC STUDIO FREIGHT TECHNICAL SPEC SHEET -->
+        {%- if handle_str contains 'compression' or title_str contains 'compression' or type_str contains 'compression' -%}
+          {%- assign spec_code = 'FLX-CMP-210-BLU' -%}
+          {%- assign spec_fab = '82% Technical Microfiber, 18% Hydro-Spandex' -%}
+          {%- assign spec_gsm = '210 GSM Compression Weave' -%}
+          {%- assign spec_seam = 'Flatlock Raglan Anti-Chafe Construction' -%}
+          {%- assign spec_feature = 'Zoned Geometric Thoracic Compression' -%}
+          {%- assign spec_wash = 'Cold Gentle Machine Wash &bull; Air Dry' -%}
+        {%- elsif handle_str contains 'jogger' or title_str contains 'jogger' or handle_str contains 'stripe' or type_str contains 'jogger' -%}
+          {%- assign spec_code = 'FLX-JOG-360-GRY' -%}
+          {%- assign spec_fab = '85% French Terry Cotton, 15% Poly Core' -%}
+          {%- assign spec_gsm = '360 GSM Heavyweight Loopback' -%}
+          {%- assign spec_seam = 'Reinforced Crotch Gusset &amp; Inseam' -%}
+          {%- assign spec_feature = 'Twin Side Racing Stripe + Concealed YKK Zips' -%}
+          {%- assign spec_wash = 'Cold Wash &bull; Tumble Dry Low' -%}
+        {%- elsif handle_str contains 'waffle' or title_str contains 'waffle' or handle_str contains 'henley' -%}
+          {%- assign spec_code = 'FLX-HEN-280-WHT' -%}
+          {%- assign spec_fab = '65% Combed Cotton, 35% Thermal Poly' -%}
+          {%- assign spec_gsm = '280 GSM Honeycomb Waffle Knit' -%}
+          {%- assign spec_seam = '3-Button Matte Placket &amp; Ribbed Cuffs' -%}
+          {%- assign spec_feature = 'Ambient Heat Trapping Honeycomb Weave' -%}
+          {%- assign spec_wash = 'Delicate Cold Wash &bull; Dry Flat' -%}
+        {%- elsif handle_str contains 'sweatpants' or handle_str contains 'wide-leg' or title_str contains 'sweatpants' -%}
+          {%- assign spec_code = 'FLX-SWP-380-CHR' -%}
+          {%- assign spec_fab = '100% Ring-Spun Cotton Fleece' -%}
+          {%- assign spec_gsm = '380 GSM Ultra-Heavy Fleece' -%}
+          {%- assign spec_seam = 'Open Ankle Architectural Cut' -%}
+          {%- assign spec_feature = 'Deep Welt Pockets &amp; Internal Dipped Drawcords' -%}
+          {%- assign spec_wash = 'Cold Gentle Cycle &bull; Hang Dry' -%}
+        {%- elsif handle_str contains 'hoodie' or title_str contains 'hoodie' -%}
+          {%- assign spec_code = 'FLX-HD-420-BLK' -%}
+          {%- assign spec_fab = '100% Combed Heavy Cotton Fleece' -%}
+          {%- assign spec_gsm = '420 GSM Structural Fleece' -%}
+          {%- assign spec_seam = 'Double-Layer Crossover Hood (No Strings)' -%}
+          {%- assign spec_feature = '3D Matte Puff Chest &amp; Spine Graphics' -%}
+          {%- assign spec_wash = 'Inside Out Cold Wash &bull; Flat Dry' -%}
+        {%- elsif handle_str contains 'tank' or handle_str contains 'stringer' or title_str contains 'tank' -%}
+          {%- assign spec_code = 'FLX-STR-180-BLK' -%}
+          {%- assign spec_fab = '70% Bamboo Viscose, 30% Combed Cotton' -%}
+          {%- assign spec_gsm = '180 GSM Featherweight Flow' -%}
+          {%- assign spec_seam = 'Deep Y-Back Cut &amp; Curved Tail Hem' -%}
+          {%- assign spec_feature = 'Maximum Upper-Body Deltoid Exposure' -%}
+          {%- assign spec_wash = 'Cold Wash &bull; Hang Dry' -%}
+        {%- else -%}
+          {%- assign spec_code = 'FLX-MT-240-BLK' -%}
+          {%- assign spec_fab = '100% Combed Ring-Spun Vintage Cotton' -%}
+          {%- assign spec_gsm = '240 GSM Heavyweight Active' -%}
+          {%- assign spec_seam = '4-Needle Flatlock Reinforcement' -%}
+          {%- assign spec_feature = 'Raw-Edge Deltoid/Lat Freedom Cut' -%}
+          {%- assign spec_wash = 'Acid Pre-Washed &bull; Zero Shrinkage' -%}
+        {%- endif -%}
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+            <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #FFF;">
+              TECHNICAL SPECIFICATIONS SHEET
+            </span>
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-muted);">
+              DOC: SPEC-{{ spec_code }}
+            </span>
+          </div>
+
+          <div class="flex-spec-table">
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">PRODUCT CODE</span>
+              <span class="flex-spec-val flex-mono">{{ spec_code }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">FABRICATION</span>
+              <span class="flex-spec-val">{{ spec_fab }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">FABRIC DENSITY</span>
+              <span class="flex-spec-val flex-mono">{{ spec_gsm }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">CONSTRUCTION</span>
+              <span class="flex-spec-val">{{ spec_seam }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">KINETIC PROFILE</span>
+              <span class="flex-spec-val">{{ spec_feature }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">WASH PROTOCOL</span>
+              <span class="flex-spec-val">{{ spec_wash }}</span>
+            </div>
+            <div class="flex-spec-row">
+              <span class="flex-spec-key">COUNTRY OF ORIGIN</span>
+              <span class="flex-spec-val">Studio Crafted in India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio Freight Clean Collapsible Disclosure Panels -->
+        <div style="border-top: 1px solid var(--color-border); margin-top: 10px;">
+          
+          <details style="padding: 16px 0; border-bottom: 1px solid var(--color-border); cursor: pointer;" open>
+            <summary class="flex-mono" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+              <span>[ 01 // PRODUCT NARRATIVE &amp; FIT PROFILE ]</span>
+              <span style="font-size: 16px; color: var(--color-accent);">&#43;</span>
+            </summary>
+            <div style="margin-top: 14px; font-size: 13px; line-height: 1.7; color: #AAA;">
+              {{ product.description | default: "Engineered specifically for heavy barbell movements and modern street transition. The raw-cut armholes are sculpted to eliminate lat-pinch on bench press and overhead rows. Heavyweight 240 GSM combed cotton drapes with commanding presence while resisting sweat breakdown." }}
+            </div>
+          </details>
+
+          <details style="padding: 16px 0; border-bottom: 1px solid var(--color-border); cursor: pointer;">
+            <summary class="flex-mono" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+              <span>[ 02 // CARE PROTOCOL &amp; LONGEVITY ]</span>
+              <span style="font-size: 16px; color: var(--color-accent);">&#43;</span>
+            </summary>
+            <div style="margin-top: 14px; font-size: 13px; line-height: 1.7; color: #AAA;">
+              Machine wash inside out in cold water (max 30&deg;C) with like colors. Avoid fabric softeners which degrade combed cotton fibers. Hang dry naturally in shade; tumble dry low if necessary. Do not bleach. Cool iron on reverse.
+            </div>
+          </details>
+
+          <details style="padding: 16px 0; border-bottom: 1px solid var(--color-border); cursor: pointer;">
+            <summary class="flex-mono" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+              <span>[ 03 // DISPATCH, LOGISTICS &amp; GUARANTEE ]</span>
+              <span style="font-size: 16px; color: var(--color-accent);">&#43;</span>
+            </summary>
+            <div style="margin-top: 14px; font-size: 13px; line-height: 1.7; color: #AAA;">
+              Orders dispatched from our central hub within 24 hours. Express pan-India transit within 3-5 business days. Real-time SMS and WhatsApp tracking enabled. 7-day hassle-free size exchanges and returns guaranteed.
+            </div>
+          </details>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- COMPLEMENTARY HARDWARE // COMPLETE THE KIT (Studio Freight Style Micro-Cards) -->
+    <div style="margin-top: 80px; padding-top: 50px; border-top: 1px solid var(--color-border);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px;">
+        <div>
+          <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent);">
+            [ COMPATIBLE HARDWARE &bull; DROP 01 ]
+          </span>
+          <h2 style="font-size: 26px; margin-top: 6px; letter-spacing: 0.02em;">
+            COMPLETE THE SYSTEM
+          </h2>
+        </div>
+        <a href="{{ routes.all_products_collection_url }}" class="flex-mono" style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted);">
+          VIEW FULL ARCHIVE [ &rarr; ]
+        </a>
+      </div>
+
+      <div class="flex-product-grid">
+        <!-- Complementary Item 1: Joggers -->
+        <div class="flex-product-card">
+          <div class="flex-product-image">
+            <a href="/products/flex-double-stripe-training-joggers">
+              <img src="{{ 'stripe-joggers-grey.png' | asset_url }}" alt="Joggers" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;">
+            </a>
+            <span class="flex-product-badge">MATCHING BOTTOM</span>
+          </div>
+          <div class="flex-product-info">
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); font-weight: 700;">FLX_03 // JOGGERS</span>
+            <h3 class="flex-product-title">FLEX Double Stripe Joggers</h3>
+            <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 10px;">
+              <span class="flex-mono" style="font-size: 14px; font-weight: 700;">₹1,699</span>
+              <a href="/products/flex-double-stripe-training-joggers" class="flex-btn-primary" style="padding: 6px 14px; font-size: 11px; border-radius: var(--radius-sm);">
+                PAIR ITEM
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Complementary Item 2: Compression -->
+        <div class="flex-product-card">
+          <div class="flex-product-image">
+            <a href="/products/flex-pro-seamless-compression-tee">
+              <img src="{{ 'compression-tee-black.jpg' | asset_url }}" alt="Compression Tee" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;">
+            </a>
+            <span class="flex-product-badge" style="background: #1E40AF;">BASE LAYER</span>
+          </div>
+          <div class="flex-product-info">
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); font-weight: 700;">FLX_02 // COMPRESSION</span>
+            <h3 class="flex-product-title">FLEX Pro Seamless Compression</h3>
+            <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 10px;">
+              <span class="flex-mono" style="font-size: 14px; font-weight: 700;">₹1,299</span>
+              <a href="/products/flex-pro-seamless-compression-tee" class="flex-btn-primary" style="padding: 6px 14px; font-size: 11px; border-radius: var(--radius-sm);">
+                PAIR ITEM
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Complementary Item 3: Henley -->
+        <div class="flex-product-card">
+          <div class="flex-product-image">
+            <a href="/products/flex-waffle-henley-long-sleeve">
+              <img src="{{ 'waffle-henley.png' | asset_url }}" alt="Waffle Henley" width="600" height="750" style="width: 100%; height: 100%; object-fit: cover;">
+            </a>
+            <span class="flex-product-badge">WARM-UP LAYER</span>
+          </div>
+          <div class="flex-product-info">
+            <span class="flex-mono" style="font-size: 10px; color: var(--color-accent); font-weight: 700;">FLX_04 // THERMAL</span>
+            <h3 class="flex-product-title">FLEX Waffle Henley Long Sleeve</h3>
+            <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 10px;">
+              <span class="flex-mono" style="font-size: 14px; font-weight: 700;">₹1,499</span>
+              <a href="/products/flex-waffle-henley-long-sleeve" class="flex-btn-primary" style="padding: 6px 14px; font-size: 11px; border-radius: var(--radius-sm);">
+                PAIR ITEM
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Studio Freight Color & Media Micro-Interactions Script -->
+<script>
+  function switchMediaView(btn, imageUrl) {
+    const mainImg = document.getElementById('flex-featured-img');
+    if (mainImg && imageUrl) {
+      mainImg.style.opacity = '0.2';
+      mainImg.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        mainImg.src = imageUrl;
+        mainImg.style.opacity = '1';
+        mainImg.style.transform = 'scale(1)';
+      }, 150);
+    }
+    document.querySelectorAll('.flex-view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function selectTechnicalColor(swatchEl, colorName, imageUrl, variantId, priceFormatted) {
+    // 1. Update swatch styling
+    document.querySelectorAll('.flex-color-swatch').forEach(s => {
+      s.classList.remove('active');
+      s.style.borderColor = 'var(--color-border)';
+      s.style.boxShadow = 'none';
+    });
+    swatchEl.classList.add('active');
+    swatchEl.style.borderColor = '#FFFFFF';
+    swatchEl.style.boxShadow = '0 0 0 2px rgba(255, 255, 255, 0.4)';
+
+    // 2. Update active color text
+    const label = document.getElementById('active-color-name');
+    if (label && colorName) {
+      label.textContent = colorName.toUpperCase();
+    }
+
+    // 3. Smoothly switch main featured image
+    const mainImg = document.getElementById('flex-featured-img');
+    if (mainImg && imageUrl) {
+      mainImg.style.opacity = '0.2';
+      mainImg.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        mainImg.src = imageUrl;
+        mainImg.style.opacity = '1';
+        mainImg.style.transform = 'scale(1)';
+      }, 160);
+    }
+
+    // 4. Update the first view switcher button to point to this new color image
+    const firstViewBtn = document.querySelector('.flex-view-switcher .flex-view-btn:first-child');
+    if (firstViewBtn && imageUrl) {
+      firstViewBtn.setAttribute('onclick', `switchMediaView(this, '${imageUrl}')`);
+      document.querySelectorAll('.flex-view-btn').forEach(b => b.classList.remove('active'));
+      firstViewBtn.classList.add('active');
+    }
+
+    // 5. Update hidden variant input and URL
+    if (variantId && variantId.trim() !== '') {
+      const varInput = document.getElementById('flex-variant-id-input');
+      if (varInput) varInput.value = variantId;
+
+      if (window.history && window.history.replaceState) {
+        const url = new URL(window.location);
+        url.searchParams.set('variant', variantId);
+        window.history.replaceState({}, '', url);
+      }
+    }
+
+    // 6. Update price if variant has specific pricing
+    if (priceFormatted && priceFormatted.trim() !== '') {
+      const priceDisplay = document.getElementById('flex-product-price-display');
+      if (priceDisplay) priceDisplay.textContent = priceFormatted;
+      const ctaPriceDisplay = document.getElementById('flex-cta-price-display');
+      if (ctaPriceDisplay) ctaPriceDisplay.textContent = priceFormatted + ' →';
+    }
+  }
+
+  function selectTechnicalSize(pill, size, variantId) {
+    document.querySelectorAll('.flex-size-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const input = document.getElementById('selected-size-input');
+    if (input) input.value = size;
+
+    if (variantId && variantId.trim() !== '') {
+      const varInput = document.getElementById('flex-variant-id-input');
+      if (varInput) varInput.value = variantId;
+    }
+  }
+
+  function toggleFabricWave(element) {
+    const bars = element.querySelectorAll('.flex-wave-bar');
+    bars.forEach(b => {
+      b.style.animationDuration = (Math.random() * 0.6 + 0.3) + 's';
+    });
+  }
+</script>
+
+<style>
+  #flex-featured-img {
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .flex-color-swatch:hover {
+    transform: scale(1.08);
+  }
+  @media (min-width: 900px) {
+    .flex-product-layout {
+      grid-template-columns: 1.15fr 1fr !important;
+      gap: 70px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Technical Product Page",
+  "settings": []
+}
+{% endschema %}

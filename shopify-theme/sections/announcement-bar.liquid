@@ -1,0 +1,63 @@
+{%- if section.settings.show_announcement -%}
+  <div class="flex-announcement-bar" style="background-color: {{ section.settings.bg_color }}; color: {{ section.settings.text_color }}; border-bottom: 1px solid var(--color-border); padding: 8px 16px;">
+    <div class="flex-container" style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;">
+      
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="flex-pulse-dot" style="width: 6px; height: 6px;"></span>
+        <span style="color: #10B981; font-weight: 600;">SYSTEM OPERATIONAL</span>
+      </div>
+
+      <div style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin: 0 14px;">
+        {%- if section.settings.link != blank -%}
+          <a href="{{ section.settings.link }}" style="color: inherit; text-decoration: none;">
+        {%- endif -%}
+          <span>{{ section.settings.text }}</span>
+        {%- if section.settings.link != blank -%}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div style="color: var(--color-muted); display: none; @media(min-width: 768px){ display: block; }">
+        EDITION 11_11 &bull; 2026
+      </div>
+
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "BATCH 004 LIVE // FREE EXPRESS LOGISTICS OVER ₹999 // WORLDWIDE DISPATCH"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0E0E0E"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#CCCCCC"
+    }
+  ]
+}
+{% endschema %}

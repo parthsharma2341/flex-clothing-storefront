@@ -1,0 +1,61 @@
+<section style="padding: 70px 0; border-bottom: 1px solid var(--color-border); background: #0E0E0E;">
+  <div class="flex-container">
+    <div style="max-width: 650px; margin: 0 auto; text-align: center;">
+      <span class="flex-mono" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-accent); display: block; margin-bottom: 8px;">
+        [ ACCESS PROTOCOL // PRIVATE RELEASES ]
+      </span>
+      <h2 style="font-size: 32px; margin-bottom: 12px; letter-spacing: 0.01em;">
+        {{ section.settings.heading | default: "JOIN THE PRIVATE RESEARCH DROP LIST" }}
+      </h2>
+      <p class="flex-mono" style="font-size: 12px; color: var(--color-muted); margin-bottom: 26px; line-height: 1.6;">
+        {{ section.settings.text | default: "Receive direct notification protocols 1 hour before public drop releases. Guaranteed allocation for Batch 005." }}
+      </p>
+
+      {% form 'customer', class: 'flex-newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div style="display: flex; gap: 8px; max-width: 480px; margin: 0 auto;">
+          <input
+            type="email"
+            name="contact[email]"
+            value="{{ form.email }}"
+            placeholder="INPUT EMAIL ADDRESS [ USER@HOST.COM ]"
+            required
+            class="flex-mono"
+            style="flex: 1; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 14px 16px; color: #FFF; font-size: 11px; letter-spacing: 0.05em;"
+          >
+          <button type="submit" class="flex-btn-primary flex-mono" style="padding: 14px 22px; border-radius: var(--radius-sm); font-size: 11px; font-weight: 700; background: #FFFFFF; color: #000000; letter-spacing: 0.08em;">
+            [ REQUEST ACCESS &rarr; ]
+          </button>
+        </div>
+        {% if form.posted_successfully? %}
+          <p class="flex-mono" style="color: #10B981; font-size: 11px; margin-top: 12px;">STATUS: PROTOCOL CONFIRMED. ACCESS TOKEN DISPATCHED TO INBOX.</p>
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FLEX Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "JOIN THE PRIVATE RESEARCH DROP LIST"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Receive direct notification protocols 1 hour before public drop releases. Guaranteed allocation for Batch 005."
+    }
+  ],
+  "presets": [
+    {
+      "name": "FLEX Newsletter"
+    }
+  ]
+}
+{% endschema %}

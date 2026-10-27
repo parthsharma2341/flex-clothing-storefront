@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "flex-404",
+      "settings": {
+        "heading": "404",
+        "subheading": "Looks like this space needs a little rearranging.",
+        "text": "The page or garment you are looking for has been relocated or retired.",
+        "btn_text": "BACK TO SHOP",
+        "btn_link": "/collections/all"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

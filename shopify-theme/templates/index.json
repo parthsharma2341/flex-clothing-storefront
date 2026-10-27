@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "hero": {
+      "type": "flex-hero",
+      "settings": {
+        "heading": "ENGINEERED PHYSICAL MERCH & ACTIVEWEAR",
+        "subheading": "RESEARCH PREVIEW // PERFORMANCE DIVISION",
+        "text": "Translating digital precision into tangible athletic textiles. High-density 240 GSM combed cottons, zoned warp-knit compression, and uninhibited kinetic range.",
+        "btn_1_text": "EXPLORE ARCHIVE",
+        "btn_1_link": "/collections/all",
+        "btn_2_text": "LAB PROTOCOL",
+        "btn_2_link": "/pages/about"
+      }
+    },
+    "categories": {
+      "type": "flex-categories",
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "title": "COMPRESSION",
+            "tagline": "ZONED WARP KNIT"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "title": "HEAVYWEIGHT TEES",
+            "tagline": "240 GSM COMBED COTTON"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "title": "TANKS & MUSCLE",
+            "tagline": "DELTOID FREEDOM CUT"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "title": "SWEATS & FLEECE",
+            "tagline": "360 GSM FRENCH TERRY"
+          }
+        }
+      },
+      "block_order": [
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4"
+      ],
+      "settings": {
+        "heading": "EQUIPMENT & APPAREL SILHOUETTES",
+        "subheading": "CATEGORICAL ARCHIVE"
+      }
+    },
+    "featured_collection": {
+      "type": "flex-featured-collection",
+      "settings": {
+        "heading": "FEATURED LAB EQUIPMENT",
+        "subheading": "CURRENT DEPLOYMENT • BATCH 004",
+        "products_to_show": 4
+      }
+    },
+    "brand_story": {
+      "type": "flex-brand-story",
+      "settings": {
+        "subheading": "PROTOCOL // RESEARCH MANIFESTO",
+        "heading": "PRECISION-CRAFTED AT THE INTERSECTION OF MOTION & DESIGN.",
+        "text": "FLEX IT operates as an athletic equipment laboratory. We do not mass-produce generic merchandise. Every garment undergoes mechanical wear testing under heavy barbell friction, high-velocity sweat dissipation, and repeated industrial washing before joining a public drop.",
+        "btn_text": "READ FULL RESEARCH SPECIFICATION",
+        "btn_link": "/pages/about"
+      }
+    },
+    "newsletter": {
+      "type": "flex-newsletter",
+      "settings": {
+        "heading": "JOIN THE PRIVATE RESEARCH DROP LIST",
+        "text": "Receive direct notification protocols 1 hour before public drop releases. Guaranteed allocation for Batch 005."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "featured_collection",
+    "brand_story",
+    "newsletter"
+  ]
+}

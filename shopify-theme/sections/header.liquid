@@ -1,0 +1,76 @@
+<header class="flex-header">
+  <div class="flex-container">
+    <div class="flex-header-inner">
+      
+      <!-- Brand Logo / Studio Freight Monogram -->
+      <a href="{{ routes.root_url }}" class="flex-logo" style="text-decoration: none;">
+        <span class="flex-logo-badge" style="font-family: var(--font-mono); font-size: 14px; font-weight: 800;">11</span>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 18px; letter-spacing: -0.02em; font-weight: 900; line-height: 1;">FLEX // 11_11</span>
+          <span class="flex-mono" style="font-size: 9px; letter-spacing: 0.15em; color: var(--color-muted); font-weight: 500; font-style: normal; margin-top: 2px;">
+            PERFORMANCE LAB
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav with Technical Brackets -->
+      <nav class="flex-nav">
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}" class="flex-mono {% if link.active %}active{% endif %}">
+            [ {{ link.title | upcase }} ]
+          </a>
+        {%- else -%}
+          <a href="{{ routes.root_url }}" class="flex-mono active">[ ARCHIVE ]</a>
+          <a href="{{ routes.all_products_collection_url }}" class="flex-mono">[ DROPS ]</a>
+          <a href="/pages/about" class="flex-mono">[ SPECS &amp; LAB ]</a>
+          <a href="/pages/contact" class="flex-mono">[ CONTACT ]</a>
+        {%- endfor -%}
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span class="flex-mono" style="font-size: 11px; color: var(--color-muted); display: none; @media(min-width: 800px){ display: inline; }">
+          REGION: [ IN / ₹ ]
+        </span>
+
+        <a href="{{ routes.search_url }}" aria-label="Search" class="flex-mono" style="font-size: 11px; color: #FFF; padding: 6px 10px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-card); display: flex; align-items: center; gap: 6px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span style="font-size: 10px;">SEARCH</span>
+        </a>
+
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{{ routes.account_url }}" aria-label="Account" class="flex-mono" style="font-size: 11px; color: var(--color-muted);">
+            [ ACC ]
+          </a>
+        {%- endif -%}
+
+        <!-- Architectural Bag Button -->
+        <a href="{{ routes.cart_url }}" class="flex-btn-primary flex-mono" style="padding: 7px 14px; border-radius: var(--radius-sm); font-size: 11px; background: #FFFFFF; color: #000000; font-weight: 700;">
+          <span>BAG</span>
+          <span style="background: #000000; color: #FFFFFF; padding: 1px 7px; border-radius: 2px; font-size: 10px; margin-left: 4px;">{{ cart.item_count }}</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

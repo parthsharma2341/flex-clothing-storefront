@@ -1,0 +1,90 @@
+<footer class="flex-footer" style="background: #0A0A0A; border-top: 1px solid var(--color-border); padding: 70px 0 40px; margin-top: 60px;">
+  <div class="flex-container">
+    
+    <!-- Top Row Brand Metadata Banner -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle);">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="flex-logo-badge" style="font-family: var(--font-mono); font-size: 13px; font-weight: 800; width: 28px; height: 28px;">11</span>
+        <div>
+          <span style="font-size: 16px; font-weight: 900; letter-spacing: -0.02em;">FLEX // 11_11 STORE</span>
+          <span class="flex-mono" style="font-size: 10px; color: var(--color-muted); display: block;">PHYSICAL MERCH &bull; ATHLETIC TEXTILE DIVISION</span>
+        </div>
+      </div>
+
+      <div class="flex-pulse-indicator">
+        <span class="flex-pulse-dot"></span>
+        <span class="flex-mono">SYSTEM STATUS: ALL SERVERS &amp; DISPATCH OPERATIONAL</span>
+      </div>
+    </div>
+
+    <!-- 4-Column Technical Links Grid -->
+    <div class="flex-footer-grid">
+      <!-- Col 1: Archive -->
+      <div>
+        <h4 class="flex-mono flex-footer-title" style="color: var(--color-accent); font-size: 11px;">
+          [ 01 // ARCHIVE &amp; DROPS ]
+        </h4>
+        <ul class="flex-footer-list flex-mono" style="font-size: 12px;">
+          <li><a href="{{ routes.all_products_collection_url }}">All Hardware &amp; Drops</a></li>
+          <li><a href="{{ routes.collections_url }}/compression">Zoned Compression</a></li>
+          <li><a href="{{ routes.collections_url }}/t-shirts">Heavyweight Raw Cut Tees</a></li>
+          <li><a href="{{ routes.collections_url }}/joggers">French Terry Joggers</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 2: Specifications -->
+      <div>
+        <h4 class="flex-mono flex-footer-title" style="color: var(--color-accent); font-size: 11px;">
+          [ 02 // LAB SPECIFICATIONS ]
+        </h4>
+        <ul class="flex-footer-list flex-mono" style="font-size: 12px;">
+          <li><a href="/pages/about">Research Manifesto</a></li>
+          <li><a href="/pages/size-guide">Technical Measurement Grid</a></li>
+          <li><a href="/pages/lookbook">Editorial Campaign Lookbook</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Support -->
+      <div>
+        <h4 class="flex-mono flex-footer-title" style="color: var(--color-accent); font-size: 11px;">
+          [ 03 // LOGISTICS &amp; SUPPORT ]
+        </h4>
+        <ul class="flex-footer-list flex-mono" style="font-size: 12px;">
+          <li><a href="/pages/contact">Contact Central Desk</a></li>
+          <li><a href="/pages/faq">Order Tracking &amp; Dispatch</a></li>
+          <li><a href="/pages/shipping-returns">Free 7-Day Exchange Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Protocols -->
+      <div>
+        <h4 class="flex-mono flex-footer-title" style="color: var(--color-accent); font-size: 11px;">
+          [ 04 // PROTOCOLS &amp; LEGAL ]
+        </h4>
+        <ul class="flex-footer-list flex-mono" style="font-size: 12px;">
+          <li><a href="/policies/privacy-policy">Privacy Protocol</a></li>
+          <li><a href="/policies/terms-of-service">Terms of Operation</a></li>
+          <li><a href="/policies/refund-policy">Return &amp; Refund Protocol</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright & Region Architecture -->
+    <div style="padding-top: 30px; border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;" class="flex-mono">
+      <div style="font-size: 11px; color: var(--color-muted);">
+        &copy; {{ 'now' | date: "%Y" }} FLEX IT CORP. ARCHITECTURAL E-COMMERCE ENGINE.
+      </div>
+      <div style="font-size: 11px; color: var(--color-muted);">
+        STOREFRONT: <strong style="color: #FFF;">flex-fit.shop</strong> &bull; CURRENCY: <strong style="color: var(--color-accent);">INR [ ₹ ]</strong>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}
