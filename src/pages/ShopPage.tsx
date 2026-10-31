@@ -4,6 +4,7 @@ import { Filter, SlidersHorizontal, Grid3X3, Grid2X2, RotateCcw, X, Check, Searc
 import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/common/ProductCard';
 import { Product } from '../types';
+import { SEO } from '../components/common/SEO';
 
 export const ShopPage: React.FC = () => {
   const [location] = useLocation();
@@ -83,6 +84,16 @@ export const ShopPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+      <SEO
+        title="Shop Performance Activewear & Streetwear Catalog"
+        description="Browse the complete FLEX collection: Compression tops, 240+ GSM oversized muscle tees, and French terry joggers. Free express shipping in India on orders over ₹1,499."
+        canonical="/shop"
+        schema={{
+          '@type': 'CollectionPage',
+          'name': 'FLEX Catalog & Shop',
+          'url': 'https://www.flex-fit.shop/shop'
+        }}
+      />
       
       {/* Page Title & Breadcrumb */}
       <div className="border-b border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">

@@ -15,6 +15,7 @@ import {
 import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/common/ProductCard';
 import { Product } from '../types';
+import { SEO } from '../components/common/SEO';
 
 interface CollectionMeta {
   id: string;
@@ -177,6 +178,18 @@ export const CollectionsPage: React.FC = () => {
 
     return (
       <div className="space-y-12 pb-20">
+        <SEO
+          title={`${collectionMeta.title} Collection`}
+          description={`${collectionMeta.description} Shop authentic FLEX ${collectionMeta.title} athletic streetwear.`}
+          canonical={`/collections/${slug}`}
+          ogImage={collectionMeta.heroImage}
+          schema={{
+            '@type': 'CollectionPage',
+            'name': `${collectionMeta.title} - FLEX Apparel`,
+            'description': collectionMeta.description,
+            'url': `https://www.flex-fit.shop/collections/${slug}`
+          }}
+        />
         
         {/* Collection Hero Banner */}
         <section className="relative min-h-[380px] sm:min-h-[460px] flex items-center justify-center overflow-hidden border-b border-white/10 bg-brand-black">
@@ -377,6 +390,17 @@ export const CollectionsPage: React.FC = () => {
   // 2. ROOT COLLECTIONS DIRECTORY VIEW (/collections)
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+      <SEO
+        title="Collections & Performance Capsules"
+        description="Explore curated athletic streetwear collections by FLEX: Zoned compression wear, heavyweight oversized muscle tees, and French terry joggers."
+        canonical="/collections"
+        schema={{
+          '@type': 'CollectionPage',
+          'name': 'FLEX Apparel Collections',
+          'description': 'Curated athletic capsules and performance drops by FLEX.',
+          'url': 'https://www.flex-fit.shop/collections'
+        }}
+      />
       
       {/* Page Header */}
       <div className="border-b border-white/10 pb-8 text-center max-w-3xl mx-auto space-y-3">

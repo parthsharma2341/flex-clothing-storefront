@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Clock, ShieldCheck, CheckCircle2, ArrowRight, MessageSquare, Phone } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
+import { SEO } from '../components/common/SEO';
 
 export const ContactPage: React.FC = () => {
   const { showToast } = useStore();
@@ -28,6 +29,16 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <SEO
+        title="Contact Customer Support & Athlete Care"
+        description="Get in touch with the FLEX team. Questions regarding size exchanges, order tracking, and upcoming drops answered within 24 hours."
+        canonical="/contact"
+        schema={{
+          '@type': 'ContactPage',
+          'name': 'FLEX Customer Support Desk',
+          'url': 'https://www.flex-fit.shop/contact'
+        }}
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-8 text-center max-w-2xl mx-auto space-y-3">

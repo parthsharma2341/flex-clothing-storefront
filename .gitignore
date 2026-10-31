@@ -31,3 +31,6 @@ dist-ssr
 .gemini
 .system_generated
 3d-paper.json
+
+.vercel
+.env*

@@ -7,69 +7,78 @@
     
     <title>FLEX | Engineered Performance & Streetwear Apparel</title>
     <meta name="description" content="FLEX is a luxury performance gym-wear and streetwear brand. Engineered compression tees, oversized muscle shirts, joggers, and tanks built for movement, discipline, and modern aesthetics." />
-    <meta name="keywords" content="FLEX, gym wear, compression shirts, muscle tees, oversized tees, streetwear, gym joggers, athletic apparel" />
+    <meta name="keywords" content="FLEX, gym wear, compression shirts, muscle tees, oversized tees, streetwear, gym joggers, athletic apparel, India gym wear" />
     <meta name="theme-color" content="#0A0A0A" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.flex-fit.shop/" />
+
+    <!-- LLMs Machine-Readable Standard (GEO / AI Discovery) -->
+    <link rel="alternate" type="text/markdown" title="LLM Machine Readable Knowledge Base" href="/llms.txt" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="FLEX | Built Different. Flex It." />
     <meta property="og:description" content="Engineered performance essentials and luxury athletic streetwear. Heavyweight 240+ GSM cottons, zoned medical-grade compression, and unrestricted athletic drape." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://flex-fit.shop/" />
-    <meta property="og:image" content="/assets/branding/homepage-mockup.jpg" />
+    <meta property="og:url" content="https://www.flex-fit.shop/" />
+    <meta property="og:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg" />
+    <meta property="og:site_name" content="FLEX" />
+    <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="FLEX | Luxury Performance & Streetwear Apparel" />
     <meta name="twitter:description" content="Heavyweight 240+ GSM cottons, zoned medical-grade compression, and unrestricted athletic drape." />
-    <meta name="twitter:image" content="/assets/branding/homepage-mockup.jpg" />
+    <meta name="twitter:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg" />
 
-    <!-- Schema.org JSON-LD Structured Data -->
+    <!-- Schema.org JSON-LD Structured Data: Organization & ClothingStore -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ClothingStore",
-      "name": "FLEX",
-      "url": "https://flex-fit.shop/",
-      "logo": "https://flex-fit.shop/assets/branding/brand-kit.jpg",
-      "image": "https://flex-fit.shop/assets/branding/homepage-mockup.jpg",
-      "description": "FLEX is a luxury athletic performance and streetwear apparel brand. Engineered compression shirts, oversized muscle tees, and French terry joggers.",
-      "priceRange": "₹999 - ₹2499",
-      "currenciesAccepted": "INR, USD",
-      "paymentAccepted": "Cash, Credit Card, UPI, Net Banking",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "FLEX Drop 01 Catalog",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Product",
-              "name": "FLEX Oversized Muscle Tee",
-              "category": "Muscle Tee",
-              "offers": {
-                "@type": "Offer",
-                "price": "1199",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock"
-              }
-            }
+      "@graph": [
+        {
+          "@type": "ClothingStore",
+          "@id": "https://www.flex-fit.shop/#store",
+          "name": "FLEX",
+          "legalName": "FLEX Apparel Co.",
+          "url": "https://www.flex-fit.shop/",
+          "logo": "https://www.flex-fit.shop/assets/branding/brand-kit.jpg",
+          "image": "https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg",
+          "description": "FLEX is an Indian luxury athletic performance and modern streetwear brand. Engineered compression shirts, 240+ GSM oversized muscle tees, and French terry joggers.",
+          "priceRange": "₹999 - ₹2499",
+          "currenciesAccepted": "INR, USD",
+          "paymentAccepted": "UPI, Cash on Delivery, Credit Card, Debit Card, Net Banking",
+          "areaServed": {
+            "@type": "Country",
+            "name": "India"
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Product",
-              "name": "FLEX Pro Seamless Compression Tee",
-              "category": "Compression Wear",
-              "offers": {
-                "@type": "Offer",
-                "price": "1299",
-                "priceCurrency": "INR",
-                "availability": "https://schema.org/InStock"
-              }
-            }
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "support@flex-fit.shop",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "Hindi"]
+          },
+          "sameAs": [
+            "https://instagram.com/flex_apparel_official",
+            "https://twitter.com/flex_apparel"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.flex-fit.shop/#website",
+          "url": "https://www.flex-fit.shop/",
+          "name": "FLEX Apparel",
+          "description": "Official online storefront for FLEX engineered sportswear and streetwear apparel.",
+          "publisher": {
+            "@id": "https://www.flex-fit.shop/#store"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.flex-fit.shop/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
           }
-        ]
-      }
+        }
+      ]
     }
     </script>
 

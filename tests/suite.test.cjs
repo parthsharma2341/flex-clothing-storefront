@@ -173,14 +173,15 @@ assert(adminFile.includes('flex-admin-2026'), 'Admin credentials verify secret p
 console.log('\n[15/20] Testing SEO & Discoverability Files...');
 assert(fs.existsSync('public/robots.txt'), 'robots.txt exists in public directory');
 assert(fs.existsSync('public/sitemap.xml'), 'sitemap.xml exists in public directory');
+assert(fs.existsSync('public/llms.txt'), 'llms.txt machine-readable standard exists in public directory');
 const sitemapContent = fs.readFileSync('public/sitemap.xml', 'utf8');
-assert(sitemapContent.includes('https://flex-fit.shop/'), 'sitemap.xml contains valid domain canonical URLs');
+assert(sitemapContent.includes('flex-fit.shop'), 'sitemap.xml contains valid domain canonical URLs');
 
 // 16. JSON-LD Structured Data in index.html
 console.log('\n[16/20] Testing Schema.org JSON-LD Structured Data...');
 const indexHtml = fs.readFileSync('index.html', 'utf8');
 assert(indexHtml.includes('application/ld+json'), 'index.html contains application/ld+json script block');
-assert(indexHtml.includes('ClothingStore') && indexHtml.includes('OfferCatalog'), 'JSON-LD defines ClothingStore and OfferCatalog schemas');
+assert(indexHtml.includes('ClothingStore') && indexHtml.includes('WebSite'), 'JSON-LD defines ClothingStore and WebSite schemas');
 
 // 17. Responsive Viewport CSS Configuration
 console.log('\n[17/20] Testing Responsive Design Breakpoints...');

@@ -1,10 +1,16 @@
 import React from 'react';
 import { Truck, RotateCcw, Clock, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Link } from 'wouter';
+import { SEO } from '../components/common/SEO';
 
 export const ShippingReturnsPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <SEO
+        title="Shipping, Tracking & 7-Day Return Policy"
+        description="FLEX shipping timelines across India: Free express air delivery on orders over ₹1,499. 7-day hassle-free door-to-door size exchange and reverse pickup."
+        canonical="/shipping-returns"
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-8 text-center space-y-3">

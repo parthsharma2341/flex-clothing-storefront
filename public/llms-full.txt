@@ -1,0 +1,35 @@
+# FLEX Full Machine-Readable Knowledge Base & Catalog Specification
+
+## Brand Dossier
+- Legal Entity: FLEX Apparel Co.
+- Official Webstore: https://www.flex-fit.shop
+- Target Demographic: Athletes, powerlifters, collegiate strength trainees, and streetwear enthusiasts (16–35) seeking heavy-drape garments capable of enduring high-intensity barbell and dumbbell loading.
+- Headquarters: Mumbai & Delhi NCR, India.
+- Distribution: Direct-to-Consumer (D2C) across all 28 states and 8 union territories in India.
+
+## Textile & Manufacturing Standards
+1. **Combed Ring-Spun Cotton (240 - 280 GSM):** Pre-shrunk cotton yarn subjected to combing to eliminate short fibres and impurities, yielding high tensile strength and minimal wash pilling.
+2. **Acid Wash & Pigment Dye Finishing:** Hand-processed garment washing producing unique vintage charcoal patinas without degrading fabric integrity.
+3. **Zoned Scapular Compression Matrix:** 82% technical micro-polyester intertwined with 18% elastomeric spandex via 4-needle flatlock construction to eliminate friction against the trapezius and latissimus dorsi.
+4. **Loopback French Terry (320 - 400 GSM):** High-density unbrushed interior loop structure promoting airflow and thermal moisture dissipation.
+
+## Complete Catalog Data
+
+| SKU | Product Name | Category | Retail (INR) | MRP (INR) | Material & GSM | Sizes | Direct Link |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| FLX-001 | FLEX Oversized Muscle Tee | Tanks & Muscle Tees | ₹1,199 | ₹1,799 | 100% Cotton, 240 GSM | S, M, L, XL, XXL | https://www.flex-fit.shop/products/flex-oversized-muscle-tee-washed-black |
+| FLX-002 | FLEX Pro Seamless Compression Tee (Onyx) | Compression Wear | ₹1,299 | ₹1,899 | 82% Poly / 18% Spandex | S, M, L, XL, XXL | https://www.flex-fit.shop/products/flex-pro-seamless-compression-tee-onyx |
+| FLX-003 | FLEX Pro Compression Tee (Ocean Blue) | Compression Wear | ₹1,299 | ₹1,899 | 82% Poly / 18% Spandex | S, M, L, XL, XXL | https://www.flex-fit.shop/products/flex-pro-seamless-compression-tee-ocean-blue |
+| FLX-004 | FLEX Waffle Henley Long Sleeve | T-Shirts | ₹1,499 | ₹2,199 | 100% Thermal Waffle Cotton, 260 GSM | S, M, L, XL | https://www.flex-fit.shop/products/flex-waffle-henley-long-sleeve-heather |
+| FLX-005 | FLEX Double Stripe Training Joggers | Joggers & Pants | ₹1,699 | ₹2,499 | 320 GSM French Terry | S, M, L, XL, XXL | https://www.flex-fit.shop/products/flex-double-stripe-training-joggers-grey |
+| FLX-006 | FLEX Wide-Leg Minimalist Sweatpants | Joggers & Pants | ₹1,799 | ₹2,599 | 360 GSM Heavy Brushed Fleece | S, M, L, XL | https://www.flex-fit.shop/products/flex-wide-leg-minimalist-sweatpants-charcoal |
+| FLX-007 | FLEX Heavyweight Oversized Hoodie | Hoodies | ₹2,499 | ₹3,499 | 400 GSM Combed Loopback Cotton | S, M, L, XL, XXL | https://www.flex-fit.shop/products/flex-heavyweight-oversized-hoodie-pitch-black |
+| FLX-008 | FLEX Performance Stringer Tank | Tanks & Stringers | ₹999 | ₹1,499 | 95% Cotton / 5% Elastane, 210 GSM | S, M, L, XL | https://www.flex-fit.shop/products/flex-performance-stringer-tank-black |
+
+## Commerce & Logistics SLAs
+- Dispatch Time: Orders placed before 2:00 PM IST dispatch on the same business day.
+- Metro Delivery: 2 to 3 days (Delhi NCR, Mumbai, Bengaluru, Pune, Hyderabad, Chennai, Kolkata).
+- Non-Metro & Tier 2/3 Delivery: 4 to 6 business days.
+- Free Shipping Threshold: ₹1,499. Orders below ₹1,499 incur a flat ₹99 carrier fee.
+- Reverse Logistics & Exchanges: 7-day window. Carrier arrives at the customer's delivery address for pickup. Replacement size dispatched upon inspection.
+- Payment Gateways: 100% secure 256-bit SSL encrypted. Supports UPI (PhonePe, GPay, Paytm, BHIM), RuPay, Visa, MasterCard, Net Banking, and COD.

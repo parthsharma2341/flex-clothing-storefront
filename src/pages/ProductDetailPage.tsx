@@ -24,6 +24,7 @@ import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/common/ProductCard';
 import { useStore } from '../context/StoreContext';
 import { Review } from '../types';
+import { SEO } from '../components/common/SEO';
 
 export const ProductDetailPage: React.FC = () => {
   const [, params] = useRoute('/products/:slug');
@@ -224,6 +225,45 @@ export const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 pb-24 lg:pb-16 font-sans">
+      <SEO
+        title={product.name}
+        description={`${product.name} - ₹${product.price}. ${product.tagline} ${product.description.slice(0, 120)}...`}
+        canonical={`/products/${product.slug}`}
+        ogType="product"
+        ogImage={product.images[0]}
+        schema={{
+          '@type': 'Product',
+          'name': product.name,
+          'image': product.images.map((img) => (img.startsWith('http') ? img : `https://www.flex-fit.shop${img}`)),
+          'description': product.description,
+          'sku': `FLX-${product.id}`,
+          'mpn': product.id,
+          'brand': {
+            '@type': 'Brand',
+            'name': 'FLEX'
+          },
+          'offers': {
+            '@type': 'Offer',
+            'price': product.price,
+            'priceCurrency': 'INR',
+            'priceValidUntil': '2027-12-31',
+            'itemCondition': 'https://schema.org/NewCondition',
+            'availability': product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+            'url': `https://www.flex-fit.shop/products/${product.slug}`,
+            'seller': {
+              '@type': 'Organization',
+              'name': 'FLEX'
+            }
+          },
+          'aggregateRating': {
+            '@type': 'AggregateRating',
+            'ratingValue': product.rating,
+            'reviewCount': product.reviewCount || 1,
+            'bestRating': '5',
+            'worstRating': '1'
+          }
+        }}
+      />
       
       {/* Studio Freight / ElevenLabs Technical Header Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-white/10 text-xs">

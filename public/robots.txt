@@ -1,4 +1,6 @@
 # FLEX E-Commerce Robots Configuration
+# Canonical Storefront: https://www.flex-fit.shop
+
 User-agent: *
 Allow: /
 Allow: /shop
@@ -11,6 +13,8 @@ Allow: /faq
 Allow: /shipping-returns
 Allow: /privacy-policy
 Allow: /terms
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 Disallow: /admin
 Disallow: /checkout
@@ -18,4 +22,31 @@ Disallow: /account
 Disallow: /cart
 Disallow: /track-order
 
-Sitemap: https://flex-fit.shop/sitemap.xml
+# AI & LLM Search Agents (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /checkout
+Disallow: /account
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Sitemap & LLMs Knowledge Base
+Sitemap: https://www.flex-fit.shop/sitemap.xml
+# LLM Knowledge Graph: https://www.flex-fit.shop/llms.txt

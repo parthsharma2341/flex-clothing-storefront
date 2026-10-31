@@ -1,10 +1,27 @@
 import React from 'react';
 import { Link } from 'wouter';
 import { ArrowRight, Sparkles, ShieldCheck, Flame, Check, Layers, Cpu, Compass } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const AboutPage: React.FC = () => {
   return (
     <div className="space-y-24 sm:space-y-32 py-10">
+      <SEO
+        title="About FLEX | Textile Engineering & Athletic Ethos"
+        description="Learn about FLEX: Our mission to bridge heavyweight 240+ GSM streetwear drape with zoned 4-way compression performance gear for athletes."
+        canonical="/about"
+        schema={{
+          '@type': 'AboutPage',
+          'name': 'About FLEX Apparel',
+          'description': 'Textile engineering principles and athletic performance streetwear manifesto by FLEX.',
+          'url': 'https://www.flex-fit.shop/about',
+          'mainEntity': {
+            '@type': 'Organization',
+            'name': 'FLEX',
+            'url': 'https://www.flex-fit.shop/'
+          }
+        }}
+      />
       
       {/* 1. Hero Manifesto */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">

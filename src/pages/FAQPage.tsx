@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
 import { Search, ChevronDown, ChevronUp, HelpCircle, MessageCircle, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const FAQPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -67,6 +68,22 @@ export const FAQPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+      <SEO
+        title="Frequently Asked Questions (FAQ) & Customer Help"
+        description="Official answers to FLEX sizing recommendations, delivery timelines across India, 7-day hassle-free exchange policy, and garment care instructions."
+        canonical="/faq"
+        schema={{
+          '@type': 'FAQPage',
+          'mainEntity': faqs.map((faq) => ({
+            '@type': 'Question',
+            'name': faq.question,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': faq.answer
+            }
+          }))
+        }}
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-8 text-center space-y-3">

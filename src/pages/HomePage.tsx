@@ -24,6 +24,7 @@ import { ProductCard } from '../components/common/ProductCard';
 import { Hero3DCanvas } from '../components/hero/Hero3DCanvas';
 import { ManifestoThreeD } from '../components/campaign/ManifestoThreeD';
 import { useStore } from '../context/StoreContext';
+import { SEO } from '../components/common/SEO';
 
 export const HomePage: React.FC = () => {
   const { formatPrice, showToast } = useStore();
@@ -70,6 +71,11 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-24 sm:space-y-32">
+      <SEO
+        title="Engineered Performance & Luxury Streetwear Apparel"
+        description="FLEX is a luxury performance gym-wear and streetwear brand. Engineered compression tees, oversized muscle shirts, joggers, and tanks built for movement, discipline, and modern aesthetics."
+        canonical="/"
+      />
       
       {/* 1. CINEMATIC HERO SECTION WITH 3D KINETIC MOTION */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-8 pb-16 bg-gradient-to-b from-[#0A0A0A] via-[#111111] to-[#0A0A0A] border-b border-white/10">

@@ -92,9 +92,13 @@ async function main() {
   const user = await request({ hostname: 'api.github.com', path: '/user', method: 'GET' });
   console.log(`   Authenticated as GitHub User: @${user.login} (${user.name || user.login})`);
 
-  console.log(`\n2. Creating repository "${REPO_NAME}" on GitHub...`);
+  console.log(`\n2. Accessing repository "${REPO_NAME}" on GitHub...`);
   let repo;
   try {
+    repo = await request({ hostname: 'api.github.com', path: `/repos/${user.login}/${REPO_NAME}`, method: 'GET' });
+    console.log(`   ✓ Connected to existing repository: ${repo.html_url}`);
+  } catch (err) {
+    console.log(`   Creating repository "${REPO_NAME}" on GitHub...`);
     repo = await request(
       { hostname: 'api.github.com', path: '/user/repos', method: 'POST' },
       {
@@ -105,14 +109,6 @@ async function main() {
       }
     );
     console.log(`   ✓ Repository created: ${repo.html_url}`);
-  } catch (err) {
-    if (err.message.includes('already exists')) {
-      console.log(`   Repository "${REPO_NAME}" already exists. Using existing repository.`);
-      repo = await request({ hostname: 'api.github.com', path: `/repos/${user.login}/${REPO_NAME}`, method: 'GET' });
-      console.log(`   ✓ Target repository: ${repo.html_url}`);
-    } else {
-      throw err;
-    }
   }
 
   console.log('\n3. Scanning workspace files...');
@@ -167,7 +163,7 @@ async function main() {
   const commit = await request(
     { hostname: 'api.github.com', path: `/repos/${user.login}/${REPO_NAME}/git/commits`, method: 'POST' },
     {
-      message: 'Initial commit: FLEX Premium Clothing E-Commerce Storefront',
+      message: 'feat: Complete SEO, AEO & GEO optimization (Canonical domain, llms.txt, dynamic Product & FAQ schemas)',
       tree: tree.sha,
       parents: parentCommitSha ? [parentCommitSha] : [],
     }

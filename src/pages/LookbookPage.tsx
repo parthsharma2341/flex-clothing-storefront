@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'wouter';
 import { Play, Pause, Volume2, VolumeX, ArrowRight, Sparkles, Film, Eye } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const LookbookPage: React.FC = () => {
   const video1Ref = useRef<HTMLVideoElement>(null);
@@ -24,6 +25,11 @@ export const LookbookPage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+      <SEO
+        title="Editorial Lookbook & Campaign Storyboard"
+        description="FLEX Drop 01 campaign storyboard: Raw-edge oversized muscle tees and high-performance athletic streetwear cinema."
+        canonical="/lookbook"
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-8 text-center max-w-3xl mx-auto space-y-3">

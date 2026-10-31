@@ -126,11 +126,13 @@ export const Hero3DCanvas: React.FC = () => {
 
     window.addEventListener('resize', onResize);
 
-    // Animation Loop
+    // Animation Loop with Visibility & Intersection Observer Optimization (Core Web Vitals)
     let animationFrameId: number;
     let clock = new THREE.Clock();
+    let isVisible = true;
 
     const animate = () => {
+      if (!isVisible) return;
       animationFrameId = requestAnimationFrame(animate);
       const delta = clock.getDelta();
 
@@ -155,9 +157,23 @@ export const Hero3DCanvas: React.FC = () => {
       renderer.render(scene, camera);
     };
 
-    animate();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          clock.start();
+          animate();
+        } else {
+          cancelAnimationFrame(animationFrameId);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('resize', onResize);

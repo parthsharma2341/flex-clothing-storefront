@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Ruler, Sparkles, Check, Info, ArrowRight } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
+import { SEO } from '../components/common/SEO';
 
 export const SizeGuidePage: React.FC = () => {
   const { setIsSizeAdvisorOpen } = useStore();
@@ -9,6 +10,11 @@ export const SizeGuidePage: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <SEO
+        title="Official Size Guide & Fit Specifications"
+        description="FLEX exact body measurement charts for compression shirts, oversized muscle tees, and joggers. Find your perfect fit in inches and centimeters."
+        canonical="/size-guide"
+      />
       
       {/* Header */}
       <div className="border-b border-white/10 pb-8 text-center max-w-2xl mx-auto space-y-3">
