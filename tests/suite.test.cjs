@@ -73,7 +73,7 @@ assert(allRoutesFound, 'All 22 core customer and admin routes defined in App.tsx
 // 3. Product Catalog & Image File Mapping
 console.log('\n[3/20] Testing Product Catalog & Image Integrity...');
 const productsFile = fs.readFileSync('src/data/products.ts', 'utf8');
-const imageMatches = productsFile.match(/\/assets\/[a-zA-Z0-9_\-\.\s\(\)]+\.(png|jpg|mp4)/g) || [];
+const imageMatches = productsFile.match(/\/assets\/[a-zA-Z0-9_\-\.\s\(\)]+\.(png|jpg|mp4|webp)/g) || [];
 let allImagesExist = true;
 let missingImages = [];
 for (const img of new Set(imageMatches)) {

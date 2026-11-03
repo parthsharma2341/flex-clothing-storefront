@@ -55,7 +55,7 @@ export const AboutPage: React.FC = () => {
           
           <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-brand-surface shadow-2xl group aspect-[4/3]">
             <img
-              src="/assets/branding/brand-kit.jpg"
+              src="/assets/branding/brand-kit.webp"
               alt="FLEX Brand Proposal & Kit"
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />

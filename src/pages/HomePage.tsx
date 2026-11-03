@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, lazy, Suspense } from 'react';
 import { Link } from 'wouter';
 import { 
   ArrowRight, 
@@ -21,16 +21,36 @@ import {
 } from 'lucide-react';
 import { PRODUCTS, CATEGORIES, BRAND_PILLARS } from '../data/products';
 import { ProductCard } from '../components/common/ProductCard';
-import { Hero3DCanvas } from '../components/hero/Hero3DCanvas';
-import { ManifestoThreeD } from '../components/campaign/ManifestoThreeD';
 import { useStore } from '../context/StoreContext';
 import { SEO } from '../components/common/SEO';
+
+// Defer heavy 3D canvases to avoid blocking First Contentful Paint
+const Hero3DCanvas = lazy(() => import('../components/hero/Hero3DCanvas').then((m) => ({ default: m.Hero3DCanvas })));
+const ManifestoThreeD = lazy(() => import('../components/campaign/ManifestoThreeD').then((m) => ({ default: m.ManifestoThreeD })));
 
 export const HomePage: React.FC = () => {
   const { formatPrice, showToast } = useStore();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [videoInView, setVideoInView] = useState(false);
+
+  // Lazy-load video stream only when scrolled within 300px of viewport
+  useEffect(() => {
+    if (!videoContainerRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVideoInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+    observer.observe(videoContainerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Newsletter state
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -80,8 +100,10 @@ export const HomePage: React.FC = () => {
       {/* 1. CINEMATIC HERO SECTION WITH 3D KINETIC MOTION */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-8 pb-16 bg-gradient-to-b from-[#0A0A0A] via-[#111111] to-[#0A0A0A] border-b border-white/10">
         
-        {/* Three.js 3D Kinetic Background Canvas */}
-        <Hero3DCanvas />
+        {/* Three.js 3D Kinetic Background Canvas (Loaded asynchronously to ensure instant FCP/LCP) */}
+        <Suspense fallback={<div className="w-full h-full absolute inset-0 pointer-events-none" />}>
+          <Hero3DCanvas />
+        </Suspense>
 
         {/* Ambient atmospheric glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 rounded-full blur-[140px] pointer-events-none" />
@@ -154,7 +176,7 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-brand-surface shadow-2xl group">
                 <img
-                  src="/assets/products/muscle-tee-black.png"
+                  src="/assets/products/muscle-tee-black.webp"
                   alt="FLEX Model in Washed Black Muscle Tee"
                   className="w-full h-[520px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
@@ -444,12 +466,14 @@ export const HomePage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-black shadow-2xl">
           
-          <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden bg-brand-dark">
+          <div ref={videoContainerRef} className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden bg-brand-dark">
             <video
               ref={videoRef}
-              src="/assets/video/gemini_generated_video_90ca3e3c.mp4"
+              src={videoInView ? '/assets/video/gemini_generated_video_90ca3e3c.mp4' : undefined}
+              poster="/assets/video/video-poster.webp"
+              preload="none"
               className="w-full h-full object-cover opacity-85"
-              autoPlay
+              autoPlay={videoInView}
               loop
               muted={isMuted}
               playsInline
@@ -504,8 +528,10 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. EXACT THREEUI COMPONENT INTEGRATION: FLEX ATELIER MANIFESTO */}
-      <ManifestoThreeD />
+      {/* 9. EXACT THREEUI COMPONENT INTEGRATION: FLEX ATELIER MANIFESTO (Deferred below-fold load) */}
+      <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center bg-brand-surface/40" />}>
+        <ManifestoThreeD />
+      </Suspense>
 
       {/* 10. LIFESTYLE IMAGE SECTION (EDITORIAL CRAFTSMANSHIP) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -567,7 +593,7 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="group relative rounded-2xl overflow-hidden aspect-[3/5] bg-brand-surface border border-white/10">
               <img
-                src="/assets/products/muscle-tee-features.png"
+                src="/assets/products/muscle-tee-features.webp"
                 alt="Built for movement"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
@@ -579,7 +605,7 @@ export const HomePage: React.FC = () => {
 
             <div className="group relative rounded-2xl overflow-hidden aspect-[3/5] bg-brand-surface border border-white/10 sm:translate-y-6">
               <img
-                src="/assets/products/athletic-sweatpants.png"
+                src="/assets/products/athletic-sweatpants.webp"
                 alt="Designed for you"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
@@ -591,7 +617,7 @@ export const HomePage: React.FC = () => {
 
             <div className="group relative rounded-2xl overflow-hidden aspect-[3/5] bg-brand-surface border border-white/10">
               <img
-                src="/assets/products/compression-tee-black.jpg"
+                src="/assets/products/compression-tee-black.webp"
                 alt="Quality in every detail"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />

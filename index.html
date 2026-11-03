@@ -21,7 +21,7 @@
     <meta property="og:description" content="Engineered performance essentials and luxury athletic streetwear. Heavyweight 240+ GSM cottons, zoned medical-grade compression, and unrestricted athletic drape." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.flex-fit.shop/" />
-    <meta property="og:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg" />
+    <meta property="og:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.webp" />
     <meta property="og:site_name" content="FLEX" />
     <meta property="og:locale" content="en_IN" />
 
@@ -29,7 +29,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="FLEX | Luxury Performance & Streetwear Apparel" />
     <meta name="twitter:description" content="Heavyweight 240+ GSM cottons, zoned medical-grade compression, and unrestricted athletic drape." />
-    <meta name="twitter:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg" />
+    <meta name="twitter:image" content="https://www.flex-fit.shop/assets/branding/homepage-mockup.webp" />
 
     <!-- Schema.org JSON-LD Structured Data: Organization & ClothingStore -->
     <script type="application/ld+json">
@@ -42,8 +42,8 @@
           "name": "FLEX",
           "legalName": "FLEX Apparel Co.",
           "url": "https://www.flex-fit.shop/",
-          "logo": "https://www.flex-fit.shop/assets/branding/brand-kit.jpg",
-          "image": "https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg",
+          "logo": "https://www.flex-fit.shop/assets/branding/brand-kit.webp",
+          "image": "https://www.flex-fit.shop/assets/branding/homepage-mockup.webp",
           "description": "FLEX is an Indian luxury athletic performance and modern streetwear brand. Engineered compression shirts, 240+ GSM oversized muscle tees, and French terry joggers.",
           "priceRange": "₹999 - ₹2499",
           "currenciesAccepted": "INR, USD",
@@ -82,10 +82,14 @@
     }
     </script>
 
-    <!-- Fonts: Syne (Headings) + Inter (Body) -->
+    <!-- Fonts: Non-render-blocking Syne (Headings) + Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap">
+    </noscript>
   </head>
   <body class="bg-brand-black text-brand-light min-h-screen selection:bg-brand-beige selection:text-black">
     <div id="root"></div>

@@ -12,13 +12,13 @@ export const PRODUCTS: Product[] = [
     fit: 'Oversized Fit',
     badge: 'BESTSELLER',
     images: [
-      '/assets/products/muscle-tee-black.png',
-      '/assets/products/muscle-tee-features.png',
-      '/assets/products/FLEX Washed Black Muscle Tee Collage.png',
+      '/assets/products/muscle-tee-black.webp',
+      '/assets/products/muscle-tee-features.webp',
+      '/assets/products/FLEX Washed Black Muscle Tee Collage.webp',
     ],
     colors: [
-      { name: 'Washed Black', hex: '#1C1C1E', image: '/assets/products/muscle-tee-black.png' },
-      { name: 'Vintage Slate', hex: '#2C2D30', image: '/assets/products/muscle-tee-features.png' }
+      { name: 'Washed Black', hex: '#1C1C1E', image: '/assets/products/muscle-tee-black.webp' },
+      { name: 'Vintage Slate', hex: '#2C2D30', image: '/assets/products/muscle-tee-features.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.9,
@@ -59,12 +59,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Compression Fit',
     badge: 'HIGH DEMAND',
     images: [
-      '/assets/products/compression-tee-black.jpg',
-      '/assets/hero/hero-lifestyle.png'
+      '/assets/products/compression-tee-black.webp',
+      '/assets/hero/hero-lifestyle.webp'
     ],
     colors: [
-      { name: 'Onyx Black', hex: '#0B0B0B', image: '/assets/products/compression-tee-black.jpg' },
-      { name: 'Ocean Blue', hex: '#1B3B6F', image: '/assets/products/compression-tee-blue.png' }
+      { name: 'Onyx Black', hex: '#0B0B0B', image: '/assets/products/compression-tee-black.webp' },
+      { name: 'Ocean Blue', hex: '#1B3B6F', image: '/assets/products/compression-tee-blue.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.8,
@@ -104,12 +104,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Compression Fit',
     badge: 'NEW DROP',
     images: [
-      '/assets/products/compression-tee-blue.png',
-      '/assets/products/compression-blue-poster.png'
+      '/assets/products/compression-tee-blue.webp',
+      '/assets/products/compression-blue-poster.webp'
     ],
     colors: [
-      { name: 'Ocean Blue', hex: '#1B3B6F', image: '/assets/products/compression-tee-blue.png' },
-      { name: 'Onyx Black', hex: '#0B0B0B', image: '/assets/products/compression-tee-black.jpg' }
+      { name: 'Ocean Blue', hex: '#1B3B6F', image: '/assets/products/compression-tee-blue.webp' },
+      { name: 'Onyx Black', hex: '#0B0B0B', image: '/assets/products/compression-tee-black.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.9,
@@ -147,12 +147,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Athletic Regular',
     badge: 'HEAVYWEIGHT',
     images: [
-      '/assets/products/waffle-henley.png',
-      '/assets/products/FLEX Waffle Henley Lookbook.png'
+      '/assets/products/waffle-henley.webp',
+      '/assets/products/FLEX Waffle Henley Lookbook.webp'
     ],
     colors: [
-      { name: 'Heather Grey', hex: '#D1D5DB', image: '/assets/products/waffle-henley.png' },
-      { name: 'Pitch Black', hex: '#111111', image: '/assets/products/FLEX Waffle Henley Lookbook.png' }
+      { name: 'Heather Grey', hex: '#D1D5DB', image: '/assets/products/waffle-henley.webp' },
+      { name: 'Pitch Black', hex: '#111111', image: '/assets/products/FLEX Waffle Henley Lookbook.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.7,
@@ -190,12 +190,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Athletic Regular',
     badge: 'BESTSELLER',
     images: [
-      '/assets/products/stripe-joggers-grey.png',
-      '/assets/products/Minimalist FLEX Stripe Sweatpants Catalog Shot (1).png'
+      '/assets/products/stripe-joggers-grey.webp',
+      '/assets/products/Minimalist FLEX Stripe Sweatpants Catalog Shot (1).webp'
     ],
     colors: [
-      { name: 'Heather Grey', hex: '#BFBFBF', image: '/assets/products/stripe-joggers-grey.png' },
-      { name: 'Jet Black', hex: '#181818', image: '/assets/products/wide-leg-sweatpants.png' }
+      { name: 'Heather Grey', hex: '#BFBFBF', image: '/assets/products/stripe-joggers-grey.webp' },
+      { name: 'Jet Black', hex: '#181818', image: '/assets/products/wide-leg-sweatpants.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 4.9,
@@ -234,12 +234,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Relaxed Street',
     badge: 'NEW DROP',
     images: [
-      '/assets/products/wide-leg-sweatpants.png',
-      '/assets/products/athletic-sweatpants.png'
+      '/assets/products/wide-leg-sweatpants.webp',
+      '/assets/products/athletic-sweatpants.webp'
     ],
     colors: [
-      { name: 'Vintage Charcoal', hex: '#262626', image: '/assets/products/wide-leg-sweatpants.png' },
-      { name: 'Raw Bone', hex: '#E2DEC9', image: '/assets/products/athletic-sweatpants.png' }
+      { name: 'Vintage Charcoal', hex: '#262626', image: '/assets/products/wide-leg-sweatpants.webp' },
+      { name: 'Raw Bone', hex: '#E2DEC9', image: '/assets/products/athletic-sweatpants.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.8,
@@ -277,12 +277,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Oversized Fit',
     badge: 'HEAVYWEIGHT',
     images: [
-      '/assets/branding/homepage-mockup.jpg',
-      '/assets/branding/brand-kit.jpg'
+      '/assets/branding/homepage-mockup.webp',
+      '/assets/branding/brand-kit.webp'
     ],
     colors: [
-      { name: 'Pitch Black', hex: '#0D0D0D', image: '/assets/products/athletic-sweatpants.png' },
-      { name: 'Charcoal Dust', hex: '#2A2A2A', image: '/assets/products/FLEX Performance Apparel Feature Poster.png' }
+      { name: 'Pitch Black', hex: '#0D0D0D', image: '/assets/products/athletic-sweatpants.webp' },
+      { name: 'Charcoal Dust', hex: '#2A2A2A', image: '/assets/products/FLEX Performance Apparel Feature Poster.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rating: 5.0,
@@ -321,12 +321,12 @@ export const PRODUCTS: Product[] = [
     fit: 'Athletic Regular',
     badge: '20% OFF',
     images: [
-      '/assets/products/muscle-tee-black.png',
-      '/assets/products/muscle-tee-features.png'
+      '/assets/products/muscle-tee-black.webp',
+      '/assets/products/muscle-tee-features.webp'
     ],
     colors: [
-      { name: 'Obsidian Black', hex: '#111111', image: '/assets/products/muscle-tee-black.png' },
-      { name: 'Steel Grey', hex: '#4B4B4B', image: '/assets/products/muscle-tee-features.png' }
+      { name: 'Obsidian Black', hex: '#111111', image: '/assets/products/muscle-tee-black.webp' },
+      { name: 'Steel Grey', hex: '#4B4B4B', image: '/assets/products/muscle-tee-features.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.7,
@@ -359,28 +359,28 @@ export const CATEGORIES = [
     id: 'compression',
     name: 'COMPRESSION',
     tagline: 'SUPPORT | PERFORMANCE | RECOVERY',
-    image: '/assets/products/compression-tee-black.jpg',
+    image: '/assets/products/compression-tee-black.webp',
     description: 'Targeted muscular support, posture alignment, and accelerated warm-up performance.'
   },
   {
     id: 't-shirts',
     name: 'T-SHIRTS',
     tagline: 'PREMIUM FABRIC | EVERYDAY STYLE',
-    image: '/assets/products/waffle-henley.png',
+    image: '/assets/products/waffle-henley.webp',
     description: 'Textured waffles, heavyweight streetwear cuts, and minimal clean aesthetics.'
   },
   {
     id: 'tanks',
     name: 'TANKS & MUSCLE TEES',
     tagline: 'FREEDOM | BREATHABILITY | FLEXIBILITY',
-    image: '/assets/products/muscle-tee-black.png',
+    image: '/assets/products/muscle-tee-black.webp',
     description: 'Raw-cut armholes, dropped arm designs, and unconstrained shoulder mobility.'
   },
   {
     id: 'joggers',
     name: 'JOGGERS & SWEATS',
     tagline: 'COMFORT | MOBILITY | STYLE',
-    image: '/assets/products/stripe-joggers-grey.png',
+    image: '/assets/products/stripe-joggers-grey.webp',
     description: 'Heavyweight French terry, secure zipper pockets, and modern athletic silhouettes.'
   }
 ];

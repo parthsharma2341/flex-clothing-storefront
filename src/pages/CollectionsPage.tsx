@@ -43,7 +43,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'TECHNICAL PRO COMPRESSION',
     subtitle: 'Zoned Warp-Knit Pressure & Ergonomic Flatlock Seams',
     description: 'Engineered for maximal exertion and rapid muscle oxygenation. Micro-geometric knit panels deliver targeted thoracic support, zero-chafe underarm mobility, and continuous sweat evacuation.',
-    heroImage: '/assets/products/compression-tee-blue.png',
+    heroImage: '/assets/products/compression-tee-blue.webp',
     badge: 'ATHLETE SPEC'
   },
   't-shirts': {
@@ -52,7 +52,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'T-SHIRTS & THERMAL HENLEYS',
     subtitle: 'Heavyweight Combed Cottons & Textured Waffles',
     description: 'The foundation of everyday performance and street layering. Crafted with structured rib collars, 3-button plackets, and pre-shrunk organic yarn.',
-    heroImage: '/assets/products/waffle-henley.png',
+    heroImage: '/assets/products/waffle-henley.webp',
     badge: 'ESSENTIALS'
   },
   'oversized-tees': {
@@ -61,7 +61,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'OVERSIZED MUSCLE TEES',
     subtitle: 'Raw-Edge Armholes & 240 GSM Acid-Washed Cotton',
     description: 'Cut specifically to accentuate deltoid and lat development while eliminating sleeve drag on heavy bench presses, lateral raises, and cleans.',
-    heroImage: '/assets/products/muscle-tee-black.png',
+    heroImage: '/assets/products/muscle-tee-black.webp',
     badge: 'STREETWEAR CUT'
   },
   'tank-tops': {
@@ -70,7 +70,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'PERFORMANCE STRINGERS & TANKS',
     subtitle: 'Deep Y-Back Contour & Featherweight Bamboo-Cotton',
     description: 'Unrestricted upper-body ventilation. Engineered with thin aesthetic shoulder straps and an elongated curved hem that stays anchored under load.',
-    heroImage: '/assets/products/muscle-tee-features.png',
+    heroImage: '/assets/products/muscle-tee-features.webp',
     badge: 'MAX MOBILITY'
   },
   'joggers': {
@@ -79,7 +79,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'ATHLETIC JOGGERS & SWEATS',
     subtitle: '360 GSM French Terry & Concealed YKK Zipper Storage',
     description: 'Heavyweight recovery fleece tailored with reinforced crotch gussets for squat mobility, twin outer racing stripes, and structured ankle tapers.',
-    heroImage: '/assets/products/stripe-joggers-grey.png',
+    heroImage: '/assets/products/stripe-joggers-grey.webp',
     badge: 'RECOVERY & STREET'
   },
   'shorts': {
@@ -88,7 +88,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'ATHLETIC PERFORMANCE SHORTS',
     subtitle: 'Drop 02 Preview — 5" & 7" Inseam Engineered Silhouettes',
     description: 'Currently in prototype development and athlete wear-testing. Featuring lightweight 4-way stretch ripstop, internal compression liner, and concealed bounce-free phone pocket.',
-    heroImage: '/assets/branding/brand-kit.jpg',
+    heroImage: '/assets/branding/brand-kit.webp',
     badge: 'UPCOMING DROP'
   },
   'henley': {

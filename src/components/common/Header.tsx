@@ -201,7 +201,7 @@ export const Header: React.FC = () => {
                     {/* Featured Highlight Card */}
                     <div className="col-span-1 rounded-xl overflow-hidden relative group border border-white/10 bg-black">
                       <img 
-                        src="/assets/products/muscle-tee-black.png" 
+                        src="/assets/products/muscle-tee-black.webp" 
                         alt="Featured drop" 
                         className="w-full h-44 object-cover object-top opacity-75 group-hover:scale-105 transition-transform duration-500"
                       />
@@ -404,7 +404,7 @@ export const Header: React.FC = () => {
                   placeholder="Search products..."
                   className="w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-brand-beige"
                 />
-                <button type="submit" className="absolute right-3 top-3.5 text-neutral-400">
+                <button type="submit" className="absolute right-3 top-3.5 text-neutral-400" aria-label="Submit search">
                   <Search className="w-5 h-5" />
                 </button>
               </form>

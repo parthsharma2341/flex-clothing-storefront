@@ -11,7 +11,7 @@ interface SEOProps {
 
 const DEFAULT_TITLE = 'FLEX | Engineered Performance & Streetwear Apparel';
 const DEFAULT_DESCRIPTION = 'FLEX is a luxury performance gym-wear and streetwear brand. Engineered compression tees, oversized muscle shirts, joggers, and tanks built for movement and discipline.';
-const DEFAULT_IMAGE = 'https://www.flex-fit.shop/assets/branding/homepage-mockup.jpg';
+const DEFAULT_IMAGE = 'https://www.flex-fit.shop/assets/branding/homepage-mockup.webp';
 const BASE_URL = 'https://www.flex-fit.shop';
 
 export const SEO: React.FC<SEOProps> = ({
