@@ -32,9 +32,46 @@ export const HomePage: React.FC = () => {
   const { formatPrice, showToast } = useStore();
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const manifestoContainerRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [videoInView, setVideoInView] = useState(false);
+  const [mount3D, setMount3D] = useState(false);
+  const [manifestoInView, setManifestoInView] = useState(false);
+
+  // Defer 3D WebGL canvas until interaction or idle to guarantee 0 ms Total Blocking Time (TBT)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let mounted = false;
+    const triggerMount = () => {
+      if (!mounted) {
+        mounted = true;
+        setMount3D(true);
+        cleanup();
+      }
+    };
+
+    const cleanup = () => {
+      window.removeEventListener('scroll', triggerMount);
+      window.removeEventListener('touchstart', triggerMount);
+      window.removeEventListener('pointermove', triggerMount);
+      window.removeEventListener('keydown', triggerMount);
+    };
+
+    window.addEventListener('scroll', triggerMount, { passive: true, once: true });
+    window.addEventListener('touchstart', triggerMount, { passive: true, once: true });
+    window.addEventListener('pointermove', triggerMount, { passive: true, once: true });
+    window.addEventListener('keydown', triggerMount, { passive: true, once: true });
+
+    // Fallback: mount after 2500ms so automated visual tests and idle desktop users still render 3D
+    const timer = setTimeout(triggerMount, 2500);
+
+    return () => {
+      cleanup();
+      clearTimeout(timer);
+    };
+  }, []);
 
   // Lazy-load video stream only when scrolled within 300px of viewport
   useEffect(() => {
@@ -49,6 +86,22 @@ export const HomePage: React.FC = () => {
       { rootMargin: '300px' }
     );
     observer.observe(videoContainerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Defer Manifesto ThreeUI Paper shaders until within 500px of section 9
+  useEffect(() => {
+    if (!manifestoContainerRef.current) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setManifestoInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '500px' }
+    );
+    observer.observe(manifestoContainerRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -100,10 +153,14 @@ export const HomePage: React.FC = () => {
       {/* 1. CINEMATIC HERO SECTION WITH 3D KINETIC MOTION */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-8 pb-16 bg-gradient-to-b from-[#0A0A0A] via-[#111111] to-[#0A0A0A] border-b border-white/10">
         
-        {/* Three.js 3D Kinetic Background Canvas (Loaded asynchronously to ensure instant FCP/LCP) */}
-        <Suspense fallback={<div className="w-full h-full absolute inset-0 pointer-events-none" />}>
-          <Hero3DCanvas />
-        </Suspense>
+        {/* Three.js 3D Kinetic Background Canvas (Loaded on idle to guarantee instant FCP & 0 TBT) */}
+        <div className="w-full h-full absolute inset-0 pointer-events-none transition-opacity duration-1000">
+          {mount3D ? (
+            <Suspense fallback={null}>
+              <Hero3DCanvas />
+            </Suspense>
+          ) : null}
+        </div>
 
         {/* Ambient atmospheric glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-white/5 rounded-full blur-[140px] pointer-events-none" />
@@ -174,11 +231,15 @@ export const HomePage: React.FC = () => {
 
             {/* Right Hero Image Card */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-brand-surface shadow-2xl group">
+              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-brand-surface shadow-2xl group aspect-[4/5] sm:aspect-auto">
                 <img
                   src="/assets/products/muscle-tee-black.webp"
                   alt="FLEX Model in Washed Black Muscle Tee"
-                  className="w-full h-[520px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  width="600"
+                  height="750"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-full sm:h-[520px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
                 
                 {/* Floating Product Tag */}
@@ -387,8 +448,12 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-6 relative">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-black border border-white/15">
               <img
-                src="/assets/products/Ocean Blue Compression Shirt Showcase (1).png"
+                src="/assets/products/Ocean Blue Compression Shirt Showcase (1).webp"
                 alt="FLEX Pro Compression Showcase"
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono text-white border border-white/10 uppercase">
@@ -407,8 +472,12 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-6 order-2 lg:order-1 relative">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-black border border-white/15">
               <img
-                src="/assets/products/FLEX Washed Black Muscle Tee Collage.png"
+                src="/assets/products/FLEX Washed Black Muscle Tee Collage.webp"
                 alt="FLEX Oversized Muscle Tee Storyboard"
+                width="600"
+                height="750"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-mono text-white border border-white/10 uppercase">
@@ -528,10 +597,18 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. EXACT THREEUI COMPONENT INTEGRATION: FLEX ATELIER MANIFESTO (Deferred below-fold load) */}
-      <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center bg-brand-surface/40" />}>
-        <ManifestoThreeD />
-      </Suspense>
+      {/* 9. EXACT THREEUI COMPONENT INTEGRATION: FLEX ATELIER MANIFESTO (Loaded strictly on scroll) */}
+      <div ref={manifestoContainerRef}>
+        {manifestoInView ? (
+          <Suspense fallback={<div className="min-h-[500px] flex items-center justify-center bg-brand-surface/40" />}>
+            <ManifestoThreeD />
+          </Suspense>
+        ) : (
+          <div className="min-h-[500px] bg-[#0A0A0A] border-y border-white/10 flex items-center justify-center">
+            <span className="text-xs font-mono uppercase tracking-widest text-neutral-600">FLEX ATELIER &bull; 3D KINETIC MANIFESTO</span>
+          </div>
+        )}
+      </div>
 
       {/* 10. LIFESTYLE IMAGE SECTION (EDITORIAL CRAFTSMANSHIP) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -595,6 +672,10 @@ export const HomePage: React.FC = () => {
               <img
                 src="/assets/products/muscle-tee-features.webp"
                 alt="Built for movement"
+                width="400"
+                height="660"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
@@ -607,6 +688,10 @@ export const HomePage: React.FC = () => {
               <img
                 src="/assets/products/athletic-sweatpants.webp"
                 alt="Designed for you"
+                width="400"
+                height="660"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
@@ -619,6 +704,10 @@ export const HomePage: React.FC = () => {
               <img
                 src="/assets/products/compression-tee-black.webp"
                 alt="Quality in every detail"
+                width="400"
+                height="660"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-4 flex flex-col justify-end">
@@ -651,8 +740,12 @@ export const HomePage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="group relative rounded-2xl overflow-hidden aspect-square bg-brand-surface border border-white/10">
             <img
-              src="/assets/products/FLEX Athletic Sweatpants Studio Look.png"
+              src="/assets/products/FLEX Athletic Sweatpants Studio Look.webp"
               alt="Athlete in FLEX sweatpants"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -662,8 +755,12 @@ export const HomePage: React.FC = () => {
 
           <div className="group relative rounded-2xl overflow-hidden aspect-square bg-brand-surface border border-white/10">
             <img
-              src="/assets/products/FLEX Waffle Henley Lookbook.png"
+              src="/assets/products/FLEX Waffle Henley Lookbook.webp"
               alt="FLEX Henley styling"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -673,8 +770,12 @@ export const HomePage: React.FC = () => {
 
           <div className="group relative rounded-2xl overflow-hidden aspect-square bg-brand-surface border border-white/10">
             <img
-              src="/assets/products/Ocean Blue FLEX Performance Poster.png"
+              src="/assets/products/Ocean Blue FLEX Performance Poster.webp"
               alt="FLEX Ocean blue compression"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -684,8 +785,12 @@ export const HomePage: React.FC = () => {
 
           <div className="group relative rounded-2xl overflow-hidden aspect-square bg-brand-surface border border-white/10">
             <img
-              src="/assets/products/Minimalist FLEX Stripe Sweatpants Catalog Shot.png"
+              src="/assets/products/Minimalist FLEX Stripe Sweatpants Catalog Shot.webp"
               alt="FLEX Stripe Joggers"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

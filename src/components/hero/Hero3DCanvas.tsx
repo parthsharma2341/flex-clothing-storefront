@@ -24,23 +24,37 @@ export const Hero3DCanvas: React.FC = () => {
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
+    const isMobile = width < 768;
 
-    // Scene, Camera, Renderer
+    // Scene, Camera, Renderer (Optimized for mobile power & GPU fill-rate)
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x0A0A0A, 0.05);
 
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
     camera.position.set(0, 0, 7);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: !isMobile, 
+      alpha: true, 
+      powerPreference: isMobile ? 'low-power' : 'high-performance',
+      precision: isMobile ? 'mediump' : 'highp'
+    });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
     container.appendChild(renderer.domElement);
 
     // 3D Objects: Central kinetic tech lattice (Torus Knot)
-    const geometry = new THREE.TorusKnotGeometry(1.6, 0.45, 128, 32, 2, 3);
+    // Reduce geometry subdivision by 75% on mobile to eliminate CPU/GPU thread stalls
+    const geometry = new THREE.TorusKnotGeometry(
+      1.6, 
+      0.45, 
+      isMobile ? 64 : 128, 
+      isMobile ? 16 : 32, 
+      2, 
+      3
+    );
     
     // Wireframe material with subtle glowing lines
     const material = new THREE.MeshStandardMaterial({
@@ -55,7 +69,7 @@ export const Hero3DCanvas: React.FC = () => {
     scene.add(mesh);
 
     // Inner glowing core
-    const coreGeometry = new THREE.IcosahedronGeometry(0.9, 2);
+    const coreGeometry = new THREE.IcosahedronGeometry(0.9, isMobile ? 1 : 2);
     const coreMaterial = new THREE.MeshStandardMaterial({
       color: 0xCBB89A,
       roughness: 0.1,
@@ -67,7 +81,7 @@ export const Hero3DCanvas: React.FC = () => {
     scene.add(coreMesh);
 
     // Ambient floating particles
-    const particleCount = 280;
+    const particleCount = isMobile ? 80 : 280;
     const particlePositions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount * 3; i += 3) {
       particlePositions[i] = (Math.random() - 0.5) * 14;
@@ -78,7 +92,7 @@ export const Hero3DCanvas: React.FC = () => {
     particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
     const particleMaterial = new THREE.PointsMaterial({
       color: 0xCBB89A,
-      size: 0.035,
+      size: isMobile ? 0.045 : 0.035,
       transparent: true,
       opacity: 0.6,
       blending: THREE.AdditiveBlending,

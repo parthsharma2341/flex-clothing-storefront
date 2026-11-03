@@ -149,8 +149,10 @@ export const AboutPage: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative rounded-3xl overflow-hidden border border-white/15 bg-black p-8 sm:p-16 flex flex-col items-center text-center space-y-6 shadow-2xl">
           <img
-            src="/assets/products/FLEX Washed Black Muscle Tee Collage.png"
+            src="/assets/products/FLEX Washed Black Muscle Tee Collage.webp"
             alt="Lookbook visual"
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black pointer-events-none" />

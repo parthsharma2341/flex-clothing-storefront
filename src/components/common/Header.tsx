@@ -95,7 +95,7 @@ export const Header: React.FC = () => {
               >
                 ₹ INR
               </button>
-              <span className="text-neutral-600">|</span>
+              <span className="text-neutral-500">|</span>
               <button 
                 onClick={() => setCurrency('USD')}
                 className={`transition-colors font-mono text-xs ${currency === 'USD' ? 'text-white font-bold' : 'text-neutral-400 hover:text-white'}`}

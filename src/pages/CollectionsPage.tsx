@@ -34,7 +34,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'THE COMPLETE ARCHIVE',
     subtitle: 'All Engineered Apparel & Streetwear Silhouettes',
     description: 'Explore the entire FLEX catalog. Precision-engineered compression wear, 240+ GSM heavyweight oversized muscle tees, textured waffle henleys, and architectural fleece sweatpants.',
-    heroImage: '/assets/products/Flex It Athletic Streetwear Homepage.png',
+    heroImage: '/assets/products/Flex It Athletic Streetwear Homepage.webp',
     badge: 'FULL CATALOG'
   },
   'compression': {
@@ -97,7 +97,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'THERMAL WAFFLE HENLEYS',
     subtitle: '280 GSM Honeycomb Knit & Matte Hardware',
     description: 'Micro-thermal knit architecture that retains warmth during chilly commutes while breathing effortlessly as internal body temperature rises.',
-    heroImage: '/assets/products/FLEX Waffle Henley Lookbook.png',
+    heroImage: '/assets/products/FLEX Waffle Henley Lookbook.webp',
     badge: 'TEXTURED KNIT'
   },
   'new-arrivals': {
@@ -106,7 +106,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'NEW ARRIVALS — DROP 01',
     subtitle: 'The Latest Technical Drops & Seasonal Colorways',
     description: 'Fresh from the FLEX atelier. Ocean Blue compression editions, vintage slate muscle tees, and wide-leg architectural sweatpants.',
-    heroImage: '/assets/products/Ocean Blue FLEX Performance Poster.png',
+    heroImage: '/assets/products/Ocean Blue FLEX Performance Poster.webp',
     badge: 'JUST RELEASED'
   },
   'best-sellers': {
@@ -115,7 +115,7 @@ const COLLECTION_DEFINITIONS: Record<string, CollectionMeta> = {
     title: 'COMMUNITY BESTSELLERS',
     subtitle: 'Most Highly Rated Pieces Tested by Competitive Lifters',
     description: 'Our most demanded performance silhouettes with verified 4.8+ ratings across hundreds of competitive athletes.',
-    heroImage: '/assets/products/FLEX Washed Black Muscle Tee Collage.png',
+    heroImage: '/assets/products/FLEX Washed Black Muscle Tee Collage.webp',
     badge: 'TOP RATED'
   }
 };
