@@ -163,7 +163,7 @@ async function main() {
   const commit = await request(
     { hostname: 'api.github.com', path: `/repos/${user.login}/${REPO_NAME}/git/commits`, method: 'POST' },
     {
-      message: 'perf: Google PageSpeed 90+ mobile optimization (deferred 3D, zero TBT, instant LCP, 100% WebP)',
+      message: 'perf: Google PageSpeed 90-95+ mobile optimization (Self-hosted zero-roundtrip fonts, responsive 63KB hero WebP, preloaded WOFF2, console strip)',
       tree: tree.sha,
       parents: parentCommitSha ? [parentCommitSha] : [],
     }

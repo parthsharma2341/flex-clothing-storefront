@@ -234,6 +234,8 @@ export const HomePage: React.FC = () => {
               <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-brand-surface shadow-2xl group aspect-[4/5] sm:aspect-auto">
                 <img
                   src="/assets/products/muscle-tee-black.webp"
+                  srcSet="/assets/products/muscle-tee-black-mobile.webp 600w, /assets/products/muscle-tee-black.webp 1000w"
+                  sizes="(max-width: 640px) 100vw, 600px"
                   alt="FLEX Model in Washed Black Muscle Tee"
                   width="600"
                   height="750"

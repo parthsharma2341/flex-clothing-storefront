@@ -11,6 +11,9 @@ export default defineConfig({
       '@designcodeio/threeui': path.resolve(__dirname, 'src/shaders/3d-paper/ThreeDPaper.tsx'),
     },
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   build: {
     target: 'esnext',
     cssMinify: true,
